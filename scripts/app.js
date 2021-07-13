@@ -60,32 +60,38 @@ Animate your pet across the screen while it's alive.
 
 const player = {
     name: "Brian",
-    health: 100,
-    hungerLevel: 1,
-    thirstLevel: 1,
-    years: 1,
+    health: 50,
+    hungerLevel: 10,
+    thirstLevel: 10,
+    years: 10,
     //methods
-    sleep(){
+    sleep() {
         player.health += 25;
         if (player.health > 100) {
             player.health = 100;
         }
         player.hungerLevel += 2;
+        if (player.hungerLevel > 10) {
+            player.hungerLevel = 10;
+        }
         player.thirstLevel += 2;
+        if (player.thirstLevel > 10) {
+            player.thirstLevel = 10;
+        }
         //Call metric check here
 
         //Call function to update DOM
         player.updateMetrics();
     },
-    forage(){
+    forage() {
         player.hungerLevel -= 2;
-        if(player.hungerLevel < 1){
+        if (player.hungerLevel < 1) {
             player.hungerLevel = 1;
         }
         //Call function to update DOM
         player.updateMetrics();
     },
-    hunt(){
+    hunt() {
         player.hungerLevel = 1
         let damage = Math.floor(Math.random() * 15);
         player.health -= damage;
@@ -94,25 +100,34 @@ const player = {
         //Call function to update DOM
         player.updateMetrics();
     },
-    medicine(){
+    medicine() {
         player.health += 25;
+        if (player.health > 100) {
+            player.health = 100;
+        }
         player.hungerLevel -= 1;
+        if (player.hungerLevel < 1) {
+            player.hungerLevel = 1;
+        }
         player.thirstLevel += 3;
+        if (player.thirstLevel > 10) {
+            player.thirstLevel = 10;
+        }
         //Call Metric check here
 
         //Call function to update DOM
         player.updateMetrics();
     },
-    drink(){
+    drink() {
         player.thirstLevel -= 3;
-        if(player.thirstLevel < 1){
+        if (player.thirstLevel < 1) {
             player.thirstLevel = 1;
         }
 
         //Call function to update DOM
         player.updateMetrics();
     },
-    updateMetrics(){
+    updateMetrics() {
         $(".metric.health").text(`Health: ${player.health}`);
         $(".metric.hunger").text(`Hunger Level: ${player.hungerLevel}`);
         $(".metric.thirst").text(`Thirst Level: ${player.thirstLevel}`);
@@ -120,3 +135,8 @@ const player = {
     },
 };
 
+$("#sleep_button").on("click", player.sleep);
+$("#hunt_button").on("click", player.hunt);
+$("#drink_button").on("click", player.drink);
+$("#forage_button").on("click", player.forage);
+$("#medicine_button").on("click", player.medicine);
