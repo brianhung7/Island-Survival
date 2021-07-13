@@ -1,5 +1,15 @@
+body{
+    
+}
+
 .metrics{
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons_container{
+    display:flex;
     justify-content: center;
     align-items: center;
 }
