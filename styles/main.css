@@ -23,18 +23,20 @@ body{
     align-items: center;
     border-bottom: 5px solid grey;
     justify-content: space-around;
+    background-color: #4D908E;
 }
 
 .metric{
     border: 5px red solid;
 }
 .buttons_container{
-
+    background-color: #90BE6D;
 }
 
 .center_area{
     display: flex;
     border-bottom: 5px solid grey;
+    background-color: #43AA8B;
 }
 
 .buttons_top, .buttons_bottom {
