@@ -62,7 +62,7 @@ Animate your pet across the screen while it's alive.
     Add timer that increments age by 1 every 5 seconds --
     Add metric check in case metric surpasses boundary, game over
     Add welcome screen for name entry, put name on left side next to bart.
-    Add Tooltips for buttons, what they do
+    Add Tooltips for buttons, what they do --
 */
 const player = {
     name: "Brian",
@@ -71,7 +71,7 @@ const player = {
     thirstLevel: 10,
     years: 1,
     monthNum: 0,
-    monthArr: ["January","February","March","April","May","June","July","August","September","October","November","December"],
+    monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
     //methods
     sleep() {
         player.health += 25;
@@ -112,7 +112,7 @@ const player = {
 
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took ${damage} damage from fighting an island boar.</br> </br>`));
+        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
     },
     medicine() {
         player.health += 25;
@@ -152,7 +152,7 @@ const player = {
             console.log("Escape failed that will cost you")
         }
         //$("#event_log").prepend($("<br> Attempted Escape </br>"));
-        if(player.years >= 10){
+        if (player.years >= 10) {
             $("#event_log").prepend($(`<br> Successfully escaped after ${player.years} years! You won! </br>`));
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
         } else {
@@ -168,13 +168,13 @@ const player = {
         $(".metric.years").text(`Years On Island: ${player.years}`);
         $(".metric.month").text(`Month: ${player.monthArr[this.monthNum]}`);
     },
-    timer:null,
-    startTimer(){
-        this.timer = setInterval(this.increaseTime,1000);
+    timer: null,
+    startTimer() {
+        this.timer = setInterval(this.increaseTime, 1000);
     },
-    increaseTime(){
+    increaseTime() {
         player.monthNum++;
-        if (player.monthNum >= player.monthArr.length){
+        if (player.monthNum >= player.monthArr.length) {
             player.years++;
             player.monthNum = 0;
         }

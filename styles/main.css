@@ -13,9 +13,19 @@ body{
     background-size: cover;
 }
 
+.container_welcome{
+    width: 40vw;
+    border: 10px solid #277DA1;
+    border-radius: 10px;
+    text-align: center;
+}
+.container_welcome.hidden{
+    display:none;
+}
+
 .container{
     width: 70vw;
-    border: 10px solid blue;
+    border: 10px solid #277DA1;
     border-radius: 10px;
 }
 
@@ -33,9 +43,10 @@ body{
 }
 
 .metric{
-    border: 5px red solid;
+    border: 5px yellow solid;
     padding: 20px;
     width: 300px;
+    border-radius: 3px;
 }
 .buttons_container{
     background-color: #90BE6D;
@@ -70,7 +81,9 @@ button{
     background-size:contain;
     background-repeat: no-repeat;
     transition: .5s ease-in-out;
-    border-radius: 5px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-position: center;
     
 }
 
@@ -80,3 +93,6 @@ button{
     flex: 1.5;
 }
 
+.red{
+    color:red;
+}

@@ -13,7 +13,23 @@
 </head>
 
 <body>
-    
+    <div class="container_welcome hidden">
+        <div>Welcome to Island Survival You crash landed on an island and your goal now is to wait it out for 
+
+            10 years before making an attempt to escape!</div>
+        <div>
+            <img src='imgs/welcomeIsland.gif' alt='island crash landing'>
+        </div>
+        <div>
+            Enter your name below
+        </div>
+        <div>
+
+            <button id="start_game_button">
+                Play!
+            </button>
+        </div>
+    </div>
     <div class="container">
         <div class="metrics_container">
             <span class="metric health">
@@ -26,7 +42,7 @@
                 Thirst Level
             </span>
             <span class="metric month">
-                Month 
+                Month
             </span>
             <span class="metric years">
                 Years On island
@@ -34,7 +50,7 @@
         </div>
         <div class="center_area">
             <span id="avatar">
-                <img src='imgs/bart.png'>
+                <img src='imgs/bart.png' alt='Bart Simpsons'>
             </span>
             <span id="current_event">
 
@@ -48,7 +64,7 @@
                 <button id="sleep_button" title="Increases Health, but will also increase Hunger and Thirst Levels">
                     Sleep
                 </button>
-                <button id="hunt_button" title="Lowers Hunger level to minimum but will take random damage" >
+                <button id="hunt_button" title="Lowers Hunger level to minimum but will take random damage">
                     Hunt
                 </button>
                 <button id="drink_button" title="Decreases Thirst Level">
