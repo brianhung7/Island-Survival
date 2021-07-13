@@ -23,6 +23,7 @@ body{
     flex-direction: column;
     justify-content: space-around;
     overflow: auto;
+    background-color: #43AA8B;
 }
 .container_welcome.hidden{
     display:none;
@@ -70,6 +71,7 @@ body{
     background-color: #43AA8B;
     height: 300px;
     flex-flow: row;
+    text-align: center;
 }
 
 .buttons_top, .buttons_bottom {
@@ -87,6 +89,7 @@ button{
 
 #avatar{
     flex: 1;
+    position: absolute;
 }
 
 #current_event{

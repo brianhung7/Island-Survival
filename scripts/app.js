@@ -79,6 +79,7 @@ const player = {
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
         player.name = $("#name").val();
+        $("#name_display").text(`Good luck ${player.name}!`);
     },
     sleep() {
         player.health += 25;
