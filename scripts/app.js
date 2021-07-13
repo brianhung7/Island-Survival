@@ -58,12 +58,20 @@ Animate your pet across the screen while it's alive.
     
 */
 
+/* TODO TODAY
+    Add timer that increments age by 1 every 5 seconds --
+    Add metric check in case metric surpasses boundary, game over
+    Add welcome screen for name entry, put name on left side next to bart.
+    Add Tooltips for buttons, what they do
+*/
 const player = {
     name: "Brian",
     health: 50,
     hungerLevel: 10,
     thirstLevel: 10,
     years: 1,
+    monthNum: 0,
+    monthArr: ["January","February","March","April","May","June","July","August","September","October","November","December"],
     //methods
     sleep() {
         player.health += 25;
@@ -141,17 +149,37 @@ const player = {
         if (player.years >= 25) {
             console.log("Successfully escaped. You won!");
         } else {
-            console.log("Escape failed that will cost you");
-
+            console.log("Escape failed that will cost you")
         }
-        $("#event_log").prepend($("<br> Attempted Escape </br>"));
+        //$("#event_log").prepend($("<br> Attempted Escape </br>"));
+        if(player.years >= 10){
+            $("#event_log").prepend($(`<br> Successfully escaped after ${player.years} years! You won! </br>`));
+            $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
+        } else {
+            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </br>`));
+            $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
+        }
+
     },
     updateMetricsDOM() {
         $(".metric.health").text(`Health: ${player.health}`);
         $(".metric.hunger").text(`Hunger Level: ${player.hungerLevel}`);
         $(".metric.thirst").text(`Thirst Level: ${player.thirstLevel}`);
         $(".metric.years").text(`Years On Island: ${player.years}`);
+        $(".metric.month").text(`Month: ${player.monthArr[this.monthNum]}`);
     },
+    timer:null,
+    startTimer(){
+        this.timer = setInterval(this.increaseTime,1000);
+    },
+    increaseTime(){
+        player.monthNum++;
+        if (player.monthNum >= player.monthArr.length){
+            player.years++;
+            player.monthNum = 0;
+        }
+        player.updateMetricsDOM();
+    }
 };
 
 $("#sleep_button").on("click", player.sleep);
@@ -160,3 +188,4 @@ $("#drink_button").on("click", player.drink);
 $("#forage_button").on("click", player.forage);
 $("#medicine_button").on("click", player.medicine);
 $("#escape_button").on("click", player.escape);
+player.startTimer();

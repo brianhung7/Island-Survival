@@ -28,12 +28,14 @@ body{
     justify-content: center;
     align-items: center;
     border-bottom: 5px solid grey;
-    justify-content: space-around;
+    justify-content: space-between;
     background-color: #4D908E;
 }
 
 .metric{
     border: 5px red solid;
+    padding: 20px;
+    width: 300px;
 }
 .buttons_container{
     background-color: #90BE6D;
@@ -77,3 +79,4 @@ button{
     text-align: center;
     flex: 1.5;
 }
+
