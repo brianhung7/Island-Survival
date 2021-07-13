@@ -1,7 +1,22 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
 body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     
 }
 
+.container{
+    max-width: 1000px;
+    border: 10px solid blue;
+}
 .metrics{
     display: flex;
     justify-content: center;
@@ -12,4 +27,8 @@ body{
     display:flex;
     justify-content: center;
     align-items: center;
+}
+
+.center_area{
+    display: flex;
 }
