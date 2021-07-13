@@ -61,14 +61,14 @@ Animate your pet across the screen while it's alive.
 /* TODO TODAY
     Add timer that increments age by 1 every 5 seconds --
     Add metric check in case metric surpasses boundary, game over
-    Add welcome screen for name entry, put name on left side next to bart.
+    Add welcome screen for name entry, put name on left side next to bart. --
     Add Tooltips for buttons, what they do --
 */
 const player = {
     name: "Brian",
-    health: 50,
-    hungerLevel: 10,
-    thirstLevel: 10,
+    health: 100,
+    hungerLevel: 5,
+    thirstLevel: 5,
     years: 1,
     monthNum: 0,
     monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -78,6 +78,7 @@ const player = {
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
+        player.name = $("#name").val();
     },
     sleep() {
         player.health += 25;

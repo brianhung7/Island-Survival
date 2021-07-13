@@ -14,10 +14,14 @@ body{
 }
 
 .container_welcome{
-    width: 40vw;
+    width: 30vw;
+    height: 70vh;
     border: 10px solid #277DA1;
     border-radius: 10px;
     text-align: center;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 .container_welcome.hidden{
     display:none;
@@ -70,6 +74,7 @@ button{
     padding: 15px 20px 15px 20px;
     margin: 5px;
     border-radius: 10px;
+    box-shadow: 2px 3px #888888;
 }
 
 #avatar{
