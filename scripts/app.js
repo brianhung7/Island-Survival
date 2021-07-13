@@ -82,6 +82,7 @@ const player = {
 
         //Call function to update DOM
         player.updateMetrics();
+        $("#event_log").prepend($("<br> Slept </br>"));
     },
     forage() {
         player.hungerLevel -= 2;
@@ -90,6 +91,7 @@ const player = {
         }
         //Call function to update DOM
         player.updateMetrics();
+        $("#event_log").prepend($("<br> Foraged </br>"));
     },
     hunt() {
         player.hungerLevel = 1
@@ -99,6 +101,7 @@ const player = {
 
         //Call function to update DOM
         player.updateMetrics();
+        $("#event_log").prepend($("<br> Hunted </br>"));
     },
     medicine() {
         player.health += 25;
@@ -117,6 +120,7 @@ const player = {
 
         //Call function to update DOM
         player.updateMetrics();
+        $("#event_log").prepend($("<br> Took Medicine </br>"));
     },
     drink() {
         player.thirstLevel -= 3;
@@ -126,6 +130,17 @@ const player = {
 
         //Call function to update DOM
         player.updateMetrics();
+        $("#event_log").prepend($("<br> Drank water </br>"));
+    },
+    escape(){
+        console.log("Attempting to escape");
+        if (player.years >= 25){
+            console.log("Successfully escaped. You won!");
+        } else {
+            console.log("Escape failed that will cost you");
+
+        }
+        $("#event_log").prepend($("<br> Attempted Escape </br>"));
     },
     updateMetrics() {
         $(".metric.health").text(`Health: ${player.health}`);
@@ -140,3 +155,4 @@ $("#hunt_button").on("click", player.hunt);
 $("#drink_button").on("click", player.drink);
 $("#forage_button").on("click", player.forage);
 $("#medicine_button").on("click", player.medicine);
+$("#escape_button").on("click",player.escape);

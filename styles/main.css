@@ -37,6 +37,7 @@ body{
     display: flex;
     border-bottom: 5px solid grey;
     background-color: #43AA8B;
+    height: 300px;
 }
 
 .buttons_top, .buttons_bottom {
@@ -47,4 +48,8 @@ body{
 
 button{
     padding: 15px;
+}
+
+#event_log{
+    overflow: scroll;
 }
