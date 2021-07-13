@@ -38,6 +38,7 @@ body{
     border-bottom: 5px solid grey;
     background-color: #43AA8B;
     height: 300px;
+    flex-flow: row;
 }
 
 .buttons_top, .buttons_bottom {
@@ -48,8 +49,19 @@ body{
 
 button{
     padding: 15px;
+    margin: 5px;
+}
+
+#avatar{
+    flex: 1;
+}
+
+#current_event{
+    flex: 1;
 }
 
 #event_log{
     overflow: scroll;
+    text-align: center;
+    flex: 1.5;
 }

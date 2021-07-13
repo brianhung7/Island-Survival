@@ -81,7 +81,7 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        player.updateMetrics();
+        player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Slept </br>"));
     },
     forage() {
@@ -90,7 +90,7 @@ const player = {
             player.hungerLevel = 1;
         }
         //Call function to update DOM
-        player.updateMetrics();
+        player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Foraged </br>"));
     },
     hunt() {
@@ -100,7 +100,7 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        player.updateMetrics();
+        player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Hunted </br>"));
     },
     medicine() {
@@ -119,7 +119,7 @@ const player = {
         //Call Metric check here
 
         //Call function to update DOM
-        player.updateMetrics();
+        player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Took Medicine </br>"));
     },
     drink() {
@@ -129,7 +129,7 @@ const player = {
         }
 
         //Call function to update DOM
-        player.updateMetrics();
+        player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Drank water </br>"));
     },
     escape(){
@@ -142,7 +142,7 @@ const player = {
         }
         $("#event_log").prepend($("<br> Attempted Escape </br>"));
     },
-    updateMetrics() {
+    updateMetricsDOM() {
         $(".metric.health").text(`Health: ${player.health}`);
         $(".metric.hunger").text(`Hunger Level: ${player.hungerLevel}`);
         $(".metric.thirst").text(`Thirst Level: ${player.thirstLevel}`);
