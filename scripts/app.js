@@ -72,7 +72,13 @@ const player = {
     years: 1,
     monthNum: 0,
     monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    //methods
+    //Methods
+    startGame() {
+        player.startTimer();
+        //Hide welcome screen, show main gameplay 
+        $(".container_welcome").addClass("hidden");
+        $(".container").removeClass("hidden");
+    },
     sleep() {
         player.health += 25;
         if (player.health > 100) {
@@ -112,7 +118,7 @@ const player = {
 
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
+        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
     },
     medicine() {
         player.health += 25;
@@ -188,4 +194,4 @@ $("#drink_button").on("click", player.drink);
 $("#forage_button").on("click", player.forage);
 $("#medicine_button").on("click", player.medicine);
 $("#escape_button").on("click", player.escape);
-player.startTimer();
+$("#start_game_button").on("click", player.startGame);

@@ -67,7 +67,7 @@ body{
 }
 
 button{
-    padding: 15px;
+    padding: 15px 20px 15px 20px;
     margin: 5px;
     border-radius: 10px;
 }
@@ -91,8 +91,9 @@ button{
     overflow: scroll;
     text-align: center;
     flex: 1.5;
+    overflow-x: hidden;
 }
 
-.red{
+.red_text{
     color:red;
 }
