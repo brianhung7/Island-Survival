@@ -62,6 +62,9 @@ button{
     flex: 1;
     background-size:contain;
     background-repeat: no-repeat;
+    transition: .5s ease-in-out;
+    border-radius: 5px;
+    
 }
 
 #event_log{

@@ -119,7 +119,7 @@ const player = {
         if (player.thirstLevel > 10) {
             player.thirstLevel = 10;
         }
-        $("#current_event").css("background-image","url('imgs/medicine.jpg')");
+        $("#current_event").css("background-image","url('imgs/medicine2.png')");
         //Call Metric check here
 
         //Call function to update DOM
