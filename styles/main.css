@@ -18,6 +18,11 @@ body{
     border: 10px solid blue;
     border-radius: 10px;
 }
+
+.container.hidden{
+    display:none;
+}
+
 .metrics_container{
     display: flex;
     justify-content: center;

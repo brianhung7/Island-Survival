@@ -63,7 +63,7 @@ const player = {
     health: 50,
     hungerLevel: 10,
     thirstLevel: 10,
-    years: 10,
+    years: 1,
     //methods
     sleep() {
         player.health += 25;
@@ -78,33 +78,33 @@ const player = {
         if (player.thirstLevel > 10) {
             player.thirstLevel = 10;
         }
-        $("#current_event").css("background-image","url('imgs/bartSleep.png')");
+        $("#current_event").css("background-image", "url('imgs/bartSleep.png')");
         //Call metric check here
 
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($("<br> Slept </br>"));
+        $("#event_log").prepend($(`<br> Slept. <br> Gained 25 health, hunger and thirst increased by 2.</br> </br>`));
     },
     forage() {
         player.hungerLevel -= 2;
         if (player.hungerLevel < 1) {
             player.hungerLevel = 1;
         }
-        $("#current_event").css("background-image","url('imgs/bartForage.gif')");
+        $("#current_event").css("background-image", "url('imgs/bartForage.gif')");
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($("<br> Foraged </br>"));
+        $("#event_log").prepend($("<br> Foraged.  <br>Hunger decreased by 2.</br> </br>"));
     },
     hunt() {
         player.hungerLevel = 1
         let damage = Math.floor(Math.random() * 15);
         player.health -= damage;
-        $("#current_event").css("background-image","url('imgs/bartHunt.gif')");
+        $("#current_event").css("background-image", "url('imgs/bartHunt.gif')");
         //Call metric check here
 
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($("<br> Hunted </br>"));
+        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took ${damage} damage from fighting an island boar.</br> </br>`));
     },
     medicine() {
         player.health += 25;
@@ -119,26 +119,26 @@ const player = {
         if (player.thirstLevel > 10) {
             player.thirstLevel = 10;
         }
-        $("#current_event").css("background-image","url('imgs/medicine2.png')");
+        $("#current_event").css("background-image", "url('imgs/medicine2.png')");
         //Call Metric check here
 
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($("<br> Took Medicine </br>"));
+        $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
     },
     drink() {
         player.thirstLevel -= 3;
         if (player.thirstLevel < 1) {
             player.thirstLevel = 1;
         }
-        $("#current_event").css("background-image","url('imgs/bartDrink2.png')");
+        $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
         //Call function to update DOM
         player.updateMetricsDOM();
-        $("#event_log").prepend($("<br> Drank water </br>"));
+        $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
     },
-    escape(){
+    escape() {
         console.log("Attempting to escape");
-        if (player.years >= 25){
+        if (player.years >= 25) {
             console.log("Successfully escaped. You won!");
         } else {
             console.log("Escape failed that will cost you");
@@ -159,4 +159,4 @@ $("#hunt_button").on("click", player.hunt);
 $("#drink_button").on("click", player.drink);
 $("#forage_button").on("click", player.forage);
 $("#medicine_button").on("click", player.medicine);
-$("#escape_button").on("click",player.escape);
+$("#escape_button").on("click", player.escape);
