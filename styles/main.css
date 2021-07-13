@@ -22,9 +22,17 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: space-around;
+    overflow: auto;
 }
 .container_welcome.hidden{
     display:none;
+}
+
+#welcome_message{
+    line-height: 1.5em;
+    font-size: 20px;
+    margin: 0px 15px;
+    
 }
 
 .container{
@@ -49,7 +57,7 @@ body{
 .metric{
     border: 5px yellow solid;
     padding: 20px;
-    width: 300px;
+    width: 250px;
     border-radius: 3px;
 }
 .buttons_container{
