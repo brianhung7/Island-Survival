@@ -153,18 +153,12 @@ const player = {
         $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
     },
     escape() {
-        console.log("Attempting to escape");
-        if (player.years >= 25) {
-            console.log("Successfully escaped. You won!");
-        } else {
-            console.log("Escape failed that will cost you")
-        }
         //$("#event_log").prepend($("<br> Attempted Escape </br>"));
         if (player.years >= 10) {
             $("#event_log").prepend($(`<br> Successfully escaped after ${player.years} years! You won! </br>`));
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
         } else {
-            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </br>`));
+            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </b></br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
         }
 
