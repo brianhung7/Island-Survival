@@ -78,6 +78,7 @@ const player = {
         if (player.thirstLevel > 10) {
             player.thirstLevel = 10;
         }
+        $("#current_event").css("background-image","url('imgs/bartSleep.png')");
         //Call metric check here
 
         //Call function to update DOM
@@ -89,6 +90,7 @@ const player = {
         if (player.hungerLevel < 1) {
             player.hungerLevel = 1;
         }
+        $("#current_event").css("background-image","url('imgs/bartForage.gif')");
         //Call function to update DOM
         player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Foraged </br>"));
@@ -97,6 +99,7 @@ const player = {
         player.hungerLevel = 1
         let damage = Math.floor(Math.random() * 15);
         player.health -= damage;
+        $("#current_event").css("background-image","url('imgs/bartHunt.gif')");
         //Call metric check here
 
         //Call function to update DOM
@@ -116,6 +119,7 @@ const player = {
         if (player.thirstLevel > 10) {
             player.thirstLevel = 10;
         }
+        $("#current_event").css("background-image","url('imgs/medicine.jpg')");
         //Call Metric check here
 
         //Call function to update DOM
@@ -127,7 +131,7 @@ const player = {
         if (player.thirstLevel < 1) {
             player.thirstLevel = 1;
         }
-
+        $("#current_event").css("background-image","url('imgs/bartDrink2.png')");
         //Call function to update DOM
         player.updateMetricsDOM();
         $("#event_log").prepend($("<br> Drank water </br>"));
