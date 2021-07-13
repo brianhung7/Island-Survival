@@ -9,8 +9,8 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
-    
+    background-image: url('https://i.imgur.com/i7siiF4.png');
+    background-size: cover;
 }
 
 .container{
@@ -22,15 +22,27 @@ body{
     justify-content: center;
     align-items: center;
     border-bottom: 5px solid grey;
+    justify-content: space-around;
 }
 
+.metric{
+    border: 5px red solid;
+}
 .buttons_container{
-    display:flex;
-    justify-content: center;
-    align-items: center;
+
 }
 
 .center_area{
     display: flex;
     border-bottom: 5px solid grey;
+}
+
+.buttons_top, .buttons_bottom {
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button{
+    padding: 15px;
 }
