@@ -17,10 +17,11 @@ body{
     max-width: 1000px;
     border: 10px solid blue;
 }
-.metrics{
+.metrics_container{
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 5px solid grey;
 }
 
 .buttons_container{
@@ -31,4 +32,5 @@ body{
 
 .center_area{
     display: flex;
+    border-bottom: 5px solid grey;
 }
