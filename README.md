@@ -8,11 +8,11 @@
 Create a game where you crashed on an island and have to survive by managing health, thirst, and hunter to 10 years before escaping to win.
 
 <h2>==Technologies Used==</h2>
-HTML, CSS, Javascript, jQuery
+HTML, CSS, Javascript, jQuery, DOM Manipulation
 
 <h2>==Approach Taken==</h2>
 <li>Javascript code is written using a player object with several methods that will interact with the DOM</li>
-<li>-ICEBOX, convert javascript code to using classes</li>
+<li>ICEBOX, convert javascript code to using classes-</li>
 
 <h2>==User Stories==</h2>
 <li>Player/user is presented with a welcome screen with basic instructions and name entry before Play </li>
@@ -39,3 +39,4 @@ HTML, CSS, Javascript, jQuery
 <li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
 <li>Add "bars" to metrics in addition to the textual metrics -</li>
 <li>Add nicer looking font</li>
+<li>Wilson volleyball easter egg</li>

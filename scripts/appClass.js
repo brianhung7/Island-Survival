@@ -75,7 +75,7 @@ Animate your pet across the screen while it's alive.
 
 class Player {
     constructor() {
-        this.playerName = "Brian";
+        this.playerName = "";
         this.health = 100;
         this.hungerLevel = 1;
         this.thirstLevel = 1;
@@ -142,7 +142,7 @@ class Player {
         }
         $("#current_event").css("background-image", "url('imgs/bartSleep.png')");
         //Call function to update DOM
-        $("#event_log").prepend($(`<br> Slept. <br> Gained 25 health, hunger and thirst increased by 2.</br> </br>`));
+        $("#event_log").prepend($(`<br> Slept. <br> <b class='good_text'>Gained 25 health</b>, <b class='red_text'> hunger and thirst increased by 2.</b></br> </br>`));
         this.updateMetricsDOM();
         $(".metric.health,.metric.hunger,.metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
@@ -153,7 +153,7 @@ class Player {
         }
         $("#current_event").css("background-image", "url('imgs/bartForage.gif')");
         //Call function to update DOM
-        $("#event_log").prepend($("<br> Foraged.  <br>Hunger decreased by 2.</br> </br>"));
+        $("#event_log").prepend($("<br> Foraged.  <br><b class='good_text'> Hunger decreased by 2.</b></br> </br>"));
         this.updateMetricsDOM();
         $(".metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
@@ -164,7 +164,7 @@ class Player {
         $("#current_event").css("background-image", "url('imgs/bartHunt.gif')");
 
         //Call function to update DOM
-        $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
+        $("#event_log").prepend($(`<br> Hunted. <b class='good_text'>Hunger level set to 1.</b> <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
         this.updateMetricsDOM();
         $(".metric.hunger,.metric.health").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
@@ -184,7 +184,7 @@ class Player {
         $("#current_event").css("background-image", "url('imgs/medicine2.png')");
 
         //Call function to update DOM
-        $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
+        $("#event_log").prepend($(`<br> Took Medicine. <br><b class='good_text'>Gained 25 health. Hunger Level decreased by 1.</b>. <b class='red_text'> Thirst level increased by 3</b>. </br> </br>`));
         this.updateMetricsDOM();
         $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
@@ -195,7 +195,7 @@ class Player {
         }
         $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
         //Call function to update DOM
-        $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
+        $("#event_log").prepend($("<br> Drank water. <br> <b class='good_text'>Thirst level decreased by 3</b>.</br> </br>"));
         this.updateMetricsDOM();
         $(".metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
@@ -205,7 +205,10 @@ class Player {
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
             this.gameOverWin();
         } else {
-            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </b></br>`));
+            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took 25 damage, Hunger Level increased by 3, Thirst Level increased by 3 </b></br>`));
+            this.health -= 25;
+            this.hungerLevel += 3;
+            this.thirstLevel += 3;
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
             $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
@@ -301,3 +304,7 @@ document.querySelector("#start_game_button").onclick = function(){
     player.startGame();
 }
 
+const player2 = new Player();
+document.querySelector("#start_game_button").onclick = function(){
+    player2.startGame();
+}
