@@ -59,16 +59,16 @@ Animate your pet across the screen while it's alive.
 
 /* TODO TODAY
     Add timer that increments age by 1 every 5 seconds --
-    Add metric check in case metric surpasses boundary, game over
+    Add metric check in case metric surpasses boundary, game over --
     Add welcome screen for name entry, put name on left side next to bart. --
     Add Tooltips for buttons, what they do --
 */
 
 /* TODO Wednesday
-    README
+    README --
     Add animation to avatar
     Convert to class
-    Add metric adjustment on time change function
+    Add metric adjustment on time change function --
 */
 
 
@@ -80,6 +80,7 @@ const player = {
     years: 1,
     monthNum: 0,
     monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    monthLengthSeconds: 5000,
     isTeen: false,
     isAdult: false,
     //Methods
@@ -94,6 +95,7 @@ const player = {
         player.name = $("#name").val();
         $("#name_display").text(`Good luck ${player.name}!`);
         $("#event_log").prepend($(`<br> Welcome ${player.name}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
+        player.updateMetricsDOM();
     },
     startNewGame() {
         $("button").off();
@@ -102,6 +104,7 @@ const player = {
         player.thirstLevel = 5;
         player.years = 1;
         player.monthNum = 0;
+        player.monthLengthSeconds = 5000;
         player.isAdult = false;
         player.isTeen = false;
         player.startGame();
@@ -136,7 +139,7 @@ const player = {
         }
         $("#current_event").css("background-image", "url('imgs/bartForage.gif')");
         //Call function to update DOM
-        
+
         $("#event_log").prepend($("<br> Foraged.  <br>Hunger decreased by 2.</br> </br>"));
         player.updateMetricsDOM();
         $(".metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
@@ -149,7 +152,7 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        
+
         $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
         player.updateMetricsDOM();
         $(".metric.hunger,.metric.health").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
@@ -171,7 +174,7 @@ const player = {
         //Call Metric check here
 
         //Call function to update DOM
-        
+
         $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
         player.updateMetricsDOM();
         $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
@@ -183,7 +186,7 @@ const player = {
         }
         $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
         //Call function to update DOM
-        
+
         $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
         player.updateMetricsDOM();
         $(".metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
@@ -197,9 +200,9 @@ const player = {
         } else {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </b></br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
-            $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
+            $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
-        
+
 
     },
     updateMetricsDOM() {
@@ -224,7 +227,7 @@ const player = {
     },
     timer: null,
     startTimer() {
-        this.timer = setInterval(this.increaseTime, 1000);
+        this.timer = setInterval(this.increaseTime, player.monthLengthSeconds);
     },
     increaseTime() {
         player.monthNum++;
@@ -235,14 +238,30 @@ const player = {
         player.updateMetricsDOM();
         if (player.years >= 5 && player.years < 10 && player.isTeen == false) {
             $("#avatar_bart").attr("src", "imgs/teenBart.png")
-            $("#event_log").prepend(`<br> ${player.name} has grown up into a teenager!</br>`);
-            //Need the following to so it doesn't keep repeating in the event log
+            $("#event_log").prepend(`<br> ${player.name} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
+            player.monthLengthSeconds = 4000;
+            clearInterval(player.timer);
+            player.startTimer();
+            //Need the following so it doesn't keep repeating in the event log
             player.isTeen = true;
         } else if (player.years >= 10 && player.isAdult == false) {
             $("#avatar_bart").attr("src", "imgs/oldBart.png");
-            $("#event_log").prepend(`<br> ${player.name} has grown up into a full-fledged adult!</br>`);
+            $("#event_log").prepend(`<br> ${player.name} has grown up into a full-fledged adult! As an adult, time flies by even faster, months feel shorter so keep an eye on your metrics!</br>`);
+            player.monthLengthSeconds = 3000;
+            clearInterval(player.timer);
+            player.startTimer();
+            //Need the following so it doesn't keep repeating in the event log
             player.isAdult = true;
         }
+        if (player.monthNum % 2 === 0) {
+            player.timedMetricDecrease();
+        }
+    },
+    timedMetricDecrease() {
+        player.health -= 10;
+        player.thirstLevel++;
+        player.hungerLevel++;
+        player.updateMetricsDOM();
     },
     gameOverLose() {
         $("button").text("Rest in Peace");
@@ -255,7 +274,7 @@ const player = {
     },
     gameOverWin() {
         $("button").text("Trip to Hawaii!");
-        $("button").on("click", player.startNewGame); 
+        $("button").on("click", player.startNewGame);
         $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii! `);
         clearInterval(player.timer);
     },
