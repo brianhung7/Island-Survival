@@ -81,6 +81,7 @@ const player = {
     isAdult: false,
     //Methods
     startGame() {
+        clearInterval(this.timer);
         player.startTimer();
         player.initButtons();
         //Hide welcome screen, show main gameplay 
@@ -92,6 +93,7 @@ const player = {
         $("#event_log").prepend($(`<br> Welcome ${player.name}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
     },
     startNewGame() {
+        $("button").off();
         player.health = 100;
         player.hungerLevel = 5;
         player.thirstLevel = 5;
@@ -245,7 +247,7 @@ const player = {
     },
     gameOverWin() {
         $("button").text("Trip to Hawaii!");
-        $("button").on("click", player.startNewGame); //Probably startNewGame where it resets everything first then calls startGame
+        $("button").on("click", player.startNewGame); 
         $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii! `);
         clearInterval(player.timer);
     },
