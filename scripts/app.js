@@ -68,6 +68,7 @@ Animate your pet across the screen while it's alive.
     Convert to class
 */
 
+
 const player = {
     name: "Brian",
     health: 100,
@@ -118,8 +119,9 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        player.updateMetricsDOM();
+        
         $("#event_log").prepend($(`<br> Slept. <br> Gained 25 health, hunger and thirst increased by 2.</br> </br>`));
+        player.updateMetricsDOM();
     },
     forage() {
         player.hungerLevel -= 2;
@@ -128,8 +130,9 @@ const player = {
         }
         $("#current_event").css("background-image", "url('imgs/bartForage.gif')");
         //Call function to update DOM
-        player.updateMetricsDOM();
+        
         $("#event_log").prepend($("<br> Foraged.  <br>Hunger decreased by 2.</br> </br>"));
+        player.updateMetricsDOM();
     },
     hunt() {
         player.hungerLevel = 1
@@ -139,8 +142,9 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        player.updateMetricsDOM();
+        
         $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
+        player.updateMetricsDOM();
     },
     medicine() {
         player.health += 25;
@@ -159,8 +163,9 @@ const player = {
         //Call Metric check here
 
         //Call function to update DOM
-        player.updateMetricsDOM();
+        
         $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
+        player.updateMetricsDOM();
     },
     drink() {
         player.thirstLevel -= 3;
@@ -169,8 +174,9 @@ const player = {
         }
         $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
         //Call function to update DOM
-        player.updateMetricsDOM();
+        
         $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
+        player.updateMetricsDOM();
     },
     escape() {
         //$("#event_log").prepend($("<br> Attempted Escape </br>"));
@@ -192,6 +198,19 @@ const player = {
         $(".metric.thirst").text(`Thirst Level: ${player.thirstLevel}`);
         $(".metric.years").text(`Years On Island: ${player.years}`);
         $(".metric.month").text(`Month: ${player.monthArr[this.monthNum]}`);
+        player.checkMetrics();
+    },
+    checkMetrics() {
+        if (player.health <= 0) {
+            $("#event_log").prepend(`<br> ${player.name}'s Health reached 0, you lose!</br>`);
+            player.gameOverLose();
+        } else if (player.hungerLevel >= 10) {
+            $("#event_log").prepend(`<br> ${player.name}'s Hunger Level reached 10, you lose!</br>`);
+            player.gameOverLose();
+        } else if (player.thirstLevel >= 10) {
+            $("#event_log").prepend(`<br> ${player.name}'s Thirst Level reached 10, you lose!</br>`);
+            player.gameOverLose();
+        }
     },
     timer: null,
     startTimer() {
@@ -216,9 +235,12 @@ const player = {
         }
     },
     gameOverLose() {
-        $("button").text("RIP");
+        $("button").text("Rest in Peace");
         $("button").off();
-        $("#event_log").prepend(`Game over you lost!`);
+        $("#escape_button").on("click", player.startNewGame);
+        $("#escape_button").text("Try again!");
+        $("#event_log").prepend(`Game over!`);
+        $("#avatar_bart").attr("src", "imgs/RIP.png");
         clearInterval(player.timer);
     },
     gameOverWin() {
@@ -248,13 +270,6 @@ const player = {
 $("#start_game_button").on("click", player.startGame);
 
 
-//On loss
-//("button").text("RIP");
-//$("button").off();
-
-//On victory
-//("button").text("Trip to Hawaii!");
-//("button").on("click",player.startGame); Probably startNewGame where it resets everything first then calls startGame
 
 //FADES METRICS IN AND OUT , ADD LATER FOR BONUS
 //$(".metric").fadeTo('slow', 0.3).fadeTo('slow', 1.0);;
