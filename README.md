@@ -24,15 +24,18 @@ HTML, CSS, Javascript, jQuery
 <li>Successful escape will generate a win screen while failing a metric check (exceeding metric limit) will be a game over. </li>
 
 <h2>==IceBox==</h2>
-<li>Update avatar at certain milestones</li>
+<li>Update avatar at certain milestones -</li>
      <li>Add effect to signify aging to new avatar</li>
-<li>Animate various activities</li>
-<li>When a metric is changed/modified, flash the respective metric to alert player something happened.</li>
-<li>On Game Over loss or win, add option to restart the game</li>
-<li>Add event log to keep track of events/actions</li>
+<li>Animate various activities -</li>
+<li>When a metric is changed/modified, flash the respective metric to alert player something happened. -</li>
+<li>On Game Over loss or win, add option to restart the game -</li>
+<li>Add game over screen/avatar -</li>
+<li>On game over, disable button functions so that they do nothing when game ends -</li>
+<li>Add event log to keep track of events/actions -</li>
         <li>Colorize positive/negative events</li>
 <li>Add loading bar after an action button is pressed</li>
 <li>Change javascript from using an object for the game to using classes</li>
-<li>Hovering over each button will give a tooltip that says what it will affect</li>
-<li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster</li>
-<li>Add "bars" to metrics in addition to the textual metrics</li>
+<li>Hovering over each button will give a tooltip that says what it will affect -</li>
+<li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
+<li>Add "bars" to metrics in addition to the textual metrics -</li>
+<li>Add nicer looking font</li>
