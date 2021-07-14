@@ -65,7 +65,10 @@ Animate your pet across the screen while it's alive.
 */
 
 /* TODO Wednesday
+    README
+    Add animation to avatar
     Convert to class
+    Add metric adjustment on time change function
 */
 
 
@@ -103,6 +106,7 @@ const player = {
         player.isTeen = false;
         player.startGame();
         $("#avatar_bart").attr("src", "imgs/bart.png");
+        $("#current_event").css("background-image", "url('imgs/welcomeIsland.gif')");
     },
     sleep() {
         player.health += 25;
