@@ -14,7 +14,8 @@
 
 <body>
     <div class="container_welcome">
-        <div id="welcome_message"><b>Welcome to Island Survival Your plane crash landed on an island and your goal now is to
+        <div id="welcome_message"><b>Welcome to Island Survival Your plane crash landed on an island and your goal now
+                is to
                 wait it out for 10 years before making an attempt to escape!</b>
         </div>
         <div>
@@ -36,12 +37,21 @@
         <div class="metrics_container">
             <span class="metric health">
                 Health
+                <div class="meter">
+                    <span id="health_meter" style="width: 45%"></span>
+                </div>
             </span>
             <span class="metric hunger">
                 Hunger Level
+                <div class="meter red_bar">
+                    <span id="hunger_meter" style="width: 45%"></span>
+                </div>
             </span>
             <span class="metric thirst">
                 Thirst Level
+                <div class="meter red_bar">
+                    <span id="thirst_meter"style="width: 45%"></span>
+                </div>
             </span>
             <span class="metric month">
                 Month
@@ -56,7 +66,7 @@
                 <img id="avatar_bart" src='imgs/bart.png' alt='Bart Simpson'>
             </span>
             <span id="current_event">
-                
+
             </span>
             <span id="event_log">
                 This event log tracks your actions. <br>Most recent events appear at top.</br>

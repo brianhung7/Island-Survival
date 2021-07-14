@@ -66,9 +66,10 @@ Animate your pet across the screen while it's alive.
 
 /* TODO Wednesday
     README --
-    Add animation to avatar
+    Add animation to avatar --
     Convert to class
     Add metric adjustment on time change function --
+    Add  metric progress bars
 */
 
 
@@ -203,11 +204,19 @@ const player = {
 
     },
     updateMetricsDOM() {
-        $(".metric.health").text(`Health: ${player.health}`);
+        //Deprecated code
+        /*$(".metric.health")text(`Health: ${player.health}`);
         $(".metric.hunger").text(`Hunger Level: ${player.hungerLevel}`);
         $(".metric.thirst").text(`Thirst Level: ${player.thirstLevel}`);
+        */
         $(".metric.years").text(`Years On Island: ${player.years}`);
         $(".metric.month").text(`Month: ${player.monthArr[this.monthNum]}`);
+        $(".metric.health")[0].firstChild.data = `Health: ${player.health}`;
+        $(".metric.hunger")[0].firstChild.data = `Hunger Level: ${player.hungerLevel}`;
+        $(".metric.thirst")[0].firstChild.data = `Thirst Level: ${player.thirstLevel}`;
+        $("#health_meter").css("width",`${player.health}%`);
+        $("#hunger_meter").css("width",`${player.hungerLevel*10}%`);
+        $("#thirst_meter").css("width",`${player.thirstLevel*10}%`);
         player.checkMetrics();
     },
     checkMetrics() {
