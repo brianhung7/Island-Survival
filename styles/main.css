@@ -54,10 +54,11 @@ body{
     border-bottom: 5px solid grey;
     justify-content: space-between;
     background-color: #4D908E;
+    overflow: auto;
 }
 
 .metric{
-    border: 5px yellow solid;
+    border: 5px purple solid;
     padding: 20px;
     width: 250px;
     border-radius: 3px;
@@ -126,3 +127,13 @@ button:hover {
 .red_text{
     color:red;
 }
+
+.alert{
+    animation: blink 1s linear infinite;
+}
+
+@keyframes blink{
+    0%{opacity: 0;}
+    50%{opacity: .5;}
+    100%{opacity: 1;}
+    }

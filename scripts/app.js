@@ -64,6 +64,10 @@ Animate your pet across the screen while it's alive.
     Add Tooltips for buttons, what they do --
 */
 
+/* TODO Wednesday
+    Convert to class
+*/
+
 const player = {
     name: "Brian",
     health: 100,
@@ -77,6 +81,7 @@ const player = {
     //Methods
     startGame() {
         player.startTimer();
+        player.initButtons();
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
@@ -84,6 +89,17 @@ const player = {
         player.name = $("#name").val();
         $("#name_display").text(`Good luck ${player.name}!`);
         $("#event_log").prepend($(`<br> Welcome ${player.name}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
+    },
+    startNewGame() {
+        player.health = 100;
+        player.hungerLevel = 5;
+        player.thirstLevel = 5;
+        player.years = 1;
+        player.monthNum = 0;
+        player.isAdult = false;
+        player.isTeen = false;
+        player.startGame();
+        $("#avatar_bart").attr("src", "imgs/bart.png");
     },
     sleep() {
         player.health += 25;
@@ -161,10 +177,13 @@ const player = {
         if (player.years >= 10) {
             $("#event_log").prepend($(`<br> Successfully escaped after ${player.years} years! You won! </br>`));
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
+            player.gameOverWin();
         } else {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </b></br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
         }
+        //TESTING DELETE AFTER
+        $(".metric").fadeTo('slow', 0.3).fadeTo('slow', 1.0);;
 
     },
     updateMetricsDOM() {
@@ -195,15 +214,35 @@ const player = {
             $("#event_log").prepend(`<br> ${player.name} has grown up into a full-fledged adult!</br>`);
             player.isAdult = true;
         }
-    }
+    },
+    gameOverLose() {
+        $("button").text("RIP");
+        $("button").off();
+        $("#event_log").prepend(`Game over you lost!`);
+    },
+    gameOverWin() {
+        $("button").text("Trip to Hawaii!");
+        $("button").on("click", player.startNewGame); //Probably startNewGame where it resets everything first then calls startGame
+        $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii! `);
+    },
+    initButtons() {
+        $("#sleep_button").on("click", player.sleep);
+        $("#hunt_button").on("click", player.hunt);
+        $("#drink_button").on("click", player.drink);
+        $("#forage_button").on("click", player.forage);
+        $("#medicine_button").on("click", player.medicine);
+        $("#escape_button").on("click", player.escape);
+        $("#sleep_button").text("Sleep");
+        $("#hunt_button").text("Hunt");
+        $("#drink_button").text("Drink");
+        $("#forage_button").text("Forage");
+        $("#medicine_button").text("Medicinal Herbs");
+        $("#escape_button").text("Escape");
+    },
+
 };
 
-$("#sleep_button").on("click", player.sleep);
-$("#hunt_button").on("click", player.hunt);
-$("#drink_button").on("click", player.drink);
-$("#forage_button").on("click", player.forage);
-$("#medicine_button").on("click", player.medicine);
-$("#escape_button").on("click", player.escape);
+
 $("#start_game_button").on("click", player.startGame);
 
 
@@ -214,3 +253,6 @@ $("#start_game_button").on("click", player.startGame);
 //On victory
 //("button").text("Trip to Hawaii!");
 //("button").on("click",player.startGame); Probably startNewGame where it resets everything first then calls startGame
+
+//FADES METRICS IN AND OUT , ADD LATER FOR BONUS
+//$(".metric").fadeTo('slow', 0.3).fadeTo('slow', 1.0);;
