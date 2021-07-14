@@ -219,11 +219,13 @@ const player = {
         $("button").text("RIP");
         $("button").off();
         $("#event_log").prepend(`Game over you lost!`);
+        clearInterval(player.timer);
     },
     gameOverWin() {
         $("button").text("Trip to Hawaii!");
         $("button").on("click", player.startNewGame); //Probably startNewGame where it resets everything first then calls startGame
         $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii! `);
+        clearInterval(player.timer);
     },
     initButtons() {
         $("#sleep_button").on("click", player.sleep);
