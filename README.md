@@ -35,3 +35,4 @@ HTML, CSS, Javascript, jQuery
 <li>Change javascript from using an object for the game to using classes</li>
 <li>Hovering over each button will give a tooltip that says what it will affect</li>
 <li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster</li>
+<li>Add "bars" to metrics in addition to the textual metrics</li>

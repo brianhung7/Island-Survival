@@ -75,8 +75,8 @@ Animate your pet across the screen while it's alive.
 const player = {
     name: "Brian",
     health: 100,
-    hungerLevel: 5,
-    thirstLevel: 5,
+    hungerLevel: 1,
+    thirstLevel: 1,
     years: 1,
     monthNum: 0,
     monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -100,8 +100,8 @@ const player = {
     startNewGame() {
         $("button").off();
         player.health = 100;
-        player.hungerLevel = 5;
-        player.thirstLevel = 5;
+        player.hungerLevel = 1;
+        player.thirstLevel = 1;
         player.years = 1;
         player.monthNum = 0;
         player.monthLengthSeconds = 5000;
@@ -171,10 +171,8 @@ const player = {
             player.thirstLevel = 10;
         }
         $("#current_event").css("background-image", "url('imgs/medicine2.png')");
-        //Call Metric check here
 
         //Call function to update DOM
-
         $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
         player.updateMetricsDOM();
         $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
@@ -186,13 +184,11 @@ const player = {
         }
         $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
         //Call function to update DOM
-
         $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
         player.updateMetricsDOM();
         $(".metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     escape() {
-        //$("#event_log").prepend($("<br> Attempted Escape </br>"));
         if (player.years >= 10) {
             $("#event_log").prepend($(`<br> Successfully escaped after ${player.years} years! You won! </br>`));
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
@@ -252,9 +248,13 @@ const player = {
             player.startTimer();
             //Need the following so it doesn't keep repeating in the event log
             player.isAdult = true;
-        }
+        };
         if (player.monthNum % 2 === 0) {
             player.timedMetricDecrease();
+            for (var i = 1; i <= 3; i++) {
+                $("#avatar_bart").animate({ top: 30 }, "slow");
+                $("#avatar_bart").animate({ top: 0 }, "slow");
+            }
         }
     },
     timedMetricDecrease() {
@@ -297,8 +297,3 @@ const player = {
 
 
 $("#start_game_button").on("click", player.startGame);
-
-
-
-//FADES METRICS IN AND OUT , ADD LATER FOR BONUS
-//$(".metric").fadeTo('slow', 0.3).fadeTo('slow', 1.0);;

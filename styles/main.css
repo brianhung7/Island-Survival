@@ -103,7 +103,8 @@ button:hover {
 
 #avatar_bart{
     height: 100%;
-    transition:1000ms ease-in-out;
+    animation: bounce 1s ease-in-out;
+    animation-iteration-count: infinite;
 }
 
 #current_event{
@@ -136,4 +137,25 @@ button:hover {
     0%{opacity: 0;}
     50%{opacity: .5;}
     100%{opacity: 1;}
+    }
+
+@keyframes bounce {
+    15% {
+        transform: translateY(5px);
+        }
+    30% {
+        transform: translateY(-5px);
+        }
+    50% {
+        transform: translateY(3px);
+        }
+    65% {
+        transform: translateY(-3px);
+        }
+    80% {
+        transform: translateY(2px);
+        }
+    100% {
+        transform: translateY(0);
+        }
     }
