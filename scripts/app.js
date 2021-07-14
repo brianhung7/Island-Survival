@@ -109,6 +109,7 @@ const player = {
         player.isTeen = false;
         player.startGame();
         $("#avatar_bart").attr("src", "imgs/bart.png");
+        $("#avatar_bart").css("animation-iteration-count","infinite");
         $("#current_event").css("background-image", "url('imgs/welcomeIsland.gif')");
     },
     sleep() {
@@ -270,6 +271,7 @@ const player = {
         $("#escape_button").text("Try again!");
         $("#event_log").prepend(`Game over!`);
         $("#avatar_bart").attr("src", "imgs/RIP.png");
+        $("#avatar_bart").css("animation-iteration-count","0");
         clearInterval(player.timer);
     },
     gameOverWin() {
