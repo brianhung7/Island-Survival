@@ -41,8 +41,7 @@ You pet should die if Hunger, Boredom, or Sleepiness hits 10.
 
 Morph your pet at certain ages.
     //At specific ages, change avatar to an older version
-        //Icebox
-            -Add new skills/change skills at older ages
+    //Add difficulty levels
 
 Animate your pet across the screen while it's alive.
     //Add some animations with css
@@ -67,13 +66,12 @@ Animate your pet across the screen while it's alive.
 /* TODO Wednesday
     README --
     Add animation to avatar --
-    Convert to class
+    Convert to class--
     Add metric adjustment on time change function --
-    Add  metric progress bars
+    Add  metric progress bars--
 */
 
-
-class Player {
+class Wilson {
     constructor() {
         this.playerName = "";
         this.health = 100;
@@ -83,10 +81,106 @@ class Player {
         this.monthNum = 0;
         this.monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         this.monthLengthSeconds = 1000;
+        this.timer = null;
+    }
+    startGame() {
+        clearInterval(this.timer);
+        this.startTimer();
+        this.initButtons();
+        //Hide welcome screen, show main gameplay 
+        $(".container_welcome").addClass("hidden");
+        $(".container").removeClass("hidden");
+        //Setting Player name and welcoming them
+        this.playerName = $("#name").val();
+        $("#name_display").text(`Good luck ${this.playerName}!`);
+        $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
+        $("#avatar_bart").attr("src", "imgs/wilsonBall.png");
+        $("#current_event").css("background-image", "url('imgs/ballWelcome.gif')");
+    };
+    initButtons() {
+        $("#sleep_button").text("Sleep");
+        $("#hunt_button").text("Hunt");
+        $("#drink_button").text("Drink");
+        $("#forage_button").text("Forage");
+        $("#medicine_button").text("Medicinal Herbs");
+        $("#escape_button").text("Escape");
+        $("#sleep_button").on("click", this.roll);
+        $("#hunt_button").on("click", this.roll);
+        $("#drink_button").on("click", this.roll);
+        $("#forage_button").on("click", this.roll);
+        $("#medicine_button").on("click", this.roll);
+        $("#escape_button").on("click", this.escape);
+    };
+    updateMetricsDOM() {
+        $(".metric.years").text(`Years On Island= ${this.years}`);
+        $(".metric.month").text(`Month= ${this.monthArr[this.monthNum]}`);
+        $(".metric.health")[0].firstChild.data = `Health= ${this.health}`;
+        $(".metric.hunger")[0].firstChild.data = `Hunger Level= ${this.hungerLevel}`;
+        $(".metric.thirst")[0].firstChild.data = `Thirst Level= ${this.thirstLevel}`;
+        $("#health_meter").css("width", `${this.health}%`);
+        $("#hunger_meter").css("width", `${this.hungerLevel * 10}%`);
+        $("#thirst_meter").css("width", `${this.thirstLevel * 10}%`);
+    };
+    startTimer() {
+        this.timer = setInterval(this.increaseTime, this.monthLengthSeconds);
+    };
+    increaseTime = () => {
+        this.monthNum++;
+        if (this.monthNum >= this.monthArr.length) {
+            this.years++;
+            this.monthNum = 0;
+        }
+        if (this.years >= 5 && this.years < 10 && this.isTeen == false) {
+            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
+            this.monthLengthSeconds = 800;
+            clearInterval(this.timer);
+            this.startTimer();
+            //Need the following so it doesn't keep repeating in the event log
+            this.isTeen = true;
+        } else if (this.years >= 10 && this.isAdult == false) {
+            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months feel shorter so keep an eye on your metrics!</br>`);
+            this.monthLengthSeconds = 500;
+            clearInterval(this.timer);
+            this.startTimer();
+            //Need the following so it doesn't keep repeating in the event log
+            this.isAdult = true;
+        };
+        this.updateMetricsDOM();
+    };
+    escape = () => {
+        if (this.years >= 10) {
+            $("#event_log").prepend($(`<br> Successfully escaped after ${this.years} years! You won! See you space cowboy! </br>`));
+            $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
+            this.gameOverWin();
+        } else {
+            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you.</br>`));
+            $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
+            $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
+        }
+    };
+    roll = () => {
+        $("#event_log").prepend($(`<br>Try as you might but you can't do anything but roll! You rolled for ${Math.floor(Math.random() * 50)} miles</br>`));
+        $("#current_event").css("background-image", "url('imgs/ballGif.gif')");
+    }
+}
+
+class Player extends Wilson {
+    constructor() {
+        /*this.playerName = "";
+        this.health = 100;
+        this.hungerLevel = 1;
+        this.thirstLevel = 1;
+        this.years = 1;
+        this.monthNum = 0;
+        this.monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        this.monthLengthSeconds = 1000;
+        this.timer = null;*/
+        super();
         this.isTeen = false;
         this.isAdult = false
     }
     //Methods
+
     startGame() {
         clearInterval(this.timer);
         this.startTimer();
@@ -100,6 +194,7 @@ class Player {
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
         this.updateMetricsDOM();
     };
+
     startNewGame = () => {
         $("button").off();
         this.health = 100;
@@ -212,9 +307,6 @@ class Player {
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
             $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
-        console.log(this, 'escape');
-
-
     };
     checkMetrics = () => {
         if (this.health <= 0) {
@@ -228,7 +320,6 @@ class Player {
             this.gameOverLose();
         }
     };
-    timer = null;
     startTimer() {
         this.timer = setInterval(this.increaseTime, this.monthLengthSeconds);
     };
@@ -299,12 +390,14 @@ class Player {
 
 };
 
-const player = new Player();
-document.querySelector("#start_game_button").onclick = function(){
-    player.startGame();
-}
 
-const player2 = new Player();
-document.querySelector("#start_game_button").onclick = function(){
-    player2.startGame();
+
+document.querySelector("#start_game_button").onclick = function () {
+    if ($("#name").val() == "Wilson") {
+        const player = new Wilson();
+        player.startGame();
+    } else {
+        const player = new Player();
+        player.startGame();
+    }
 }
