@@ -99,6 +99,10 @@ button:hover {
     flex: 1;
 }
 
+#avatar_bart{
+    height: 100%;
+}
+
 #current_event{
     flex: 1;
     background-size:contain;

@@ -64,6 +64,7 @@ Animate your pet across the screen while it's alive.
     Add welcome screen for name entry, put name on left side next to bart. --
     Add Tooltips for buttons, what they do --
 */
+
 const player = {
     name: "Brian",
     health: 100,
@@ -181,6 +182,11 @@ const player = {
             player.monthNum = 0;
         }
         player.updateMetricsDOM();
+        if (player.years >= 5 && player.years < 10) {
+            $("#avatar_bart").attr("src", "imgs/teenBart.png")
+        } else if (player.years > 10) {
+            $("#avatar_bart").attr("src", "imgs/oldBart.png");
+        }
     }
 };
 
@@ -191,3 +197,8 @@ $("#forage_button").on("click", player.forage);
 $("#medicine_button").on("click", player.medicine);
 $("#escape_button").on("click", player.escape);
 $("#start_game_button").on("click", player.startGame);
+
+
+//On loss
+//("button").text("RIP");
+//$("button").off();
