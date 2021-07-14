@@ -121,9 +121,9 @@ const player = {
         //Call metric check here
 
         //Call function to update DOM
-        
         $("#event_log").prepend($(`<br> Slept. <br> Gained 25 health, hunger and thirst increased by 2.</br> </br>`));
         player.updateMetricsDOM();
+        $(".metric.health,.metric.hunger,.metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     forage() {
         player.hungerLevel -= 2;
@@ -135,6 +135,7 @@ const player = {
         
         $("#event_log").prepend($("<br> Foraged.  <br>Hunger decreased by 2.</br> </br>"));
         player.updateMetricsDOM();
+        $(".metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     hunt() {
         player.hungerLevel = 1
@@ -147,6 +148,7 @@ const player = {
         
         $("#event_log").prepend($(`<br> Hunted. Hunger level set to 1. <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
         player.updateMetricsDOM();
+        $(".metric.hunger,.metric.health").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     medicine() {
         player.health += 25;
@@ -168,6 +170,7 @@ const player = {
         
         $("#event_log").prepend($("<br> Took Medicine. <br>Gained 25 health. Thirst level increased by 3. Hunger Level decreased by 1.</br> </br>"));
         player.updateMetricsDOM();
+        $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     drink() {
         player.thirstLevel -= 3;
@@ -179,6 +182,7 @@ const player = {
         
         $("#event_log").prepend($("<br> Drank water. <br> Thirst level decreased by 3.</br> </br>"));
         player.updateMetricsDOM();
+        $(".metric.thirst").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     },
     escape() {
         //$("#event_log").prepend($("<br> Attempted Escape </br>"));
@@ -189,9 +193,9 @@ const player = {
         } else {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took XX damage, Hunger Level increased by XX, Thirst Level increased by XX </b></br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
+            $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
-        //TESTING DELETE AFTER
-        $(".metric").fadeTo('slow', 0.3).fadeTo('slow', 1.0);;
+        
 
     },
     updateMetricsDOM() {
