@@ -93,7 +93,7 @@ class Wilson {
         //Setting Player name and welcoming them
         this.playerName = $("#name").val();
         $("#name_display").text(`Good luck ${this.playerName}!`);
-        $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
+        $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Tokyo Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
         $("#avatar_bart").attr("src", "imgs/wilsonBall.png");
         $("#current_event").css("background-image", "url('imgs/ballWelcome.gif')");
     };
@@ -161,7 +161,16 @@ class Wilson {
     roll = () => {
         $("#event_log").prepend($(`<br>Try as you might but you can't do anything but roll! You rolled for ${Math.floor(Math.random() * 50)} miles</br>`));
         $("#current_event").css("background-image", "url('imgs/ballGif.gif')");
-    }
+    };
+    gameOverWin = () => {
+        $("button").text("Trip to Olympics!");
+        $("button").off();
+        $("button").on("click", function(){
+            $("#current_event").css("background-image","url('imgs/ballWin.gif')");
+        });
+        $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!`);
+        clearInterval(this.timer);
+    };
 }
 
 class Player extends Wilson {
@@ -391,13 +400,13 @@ class Player extends Wilson {
 };
 
 
-
+let player = null;
 document.querySelector("#start_game_button").onclick = function () {
     if ($("#name").val() == "Wilson") {
-        const player = new Wilson();
+        player = new Wilson();
         player.startGame();
     } else {
-        const player = new Player();
+        player = new Player();
         player.startGame();
     }
 }

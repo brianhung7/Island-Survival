@@ -39,4 +39,4 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
 <li>Add "bars" to metrics in addition to the textual metrics -</li>
 <li>Add nicer looking font</li>
-<li>Wilson volleyball easter egg</li>
+<li>Wilson volleyball easter egg-</li>
