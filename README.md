@@ -5,7 +5,7 @@
 <img src="imgs/wireframeMain.png" alt="Gameplay Wireframe">
 
 <h2>==Goal==</h2>
-A game where you crashed on an island and have to survive by managing health, thirst, and hunter to 10 years before escaping to win.
+Create a game where you crashed on an island and have to survive by managing health, thirst, and hunter to 10 years before escaping to win.
 
 <h2>==Technologies Used==</h2>
 HTML, CSS, Javascript, jQuery
@@ -18,7 +18,8 @@ HTML, CSS, Javascript, jQuery
 <li>Player/user is presented with a welcome screen with basic instructions and name entry before Play </li>
 <li>After beginning the game, player sees several metrics on the top bar that they have to manage, keeping Health above 0 and Thirst/Hunger Levels lower than 10. </li>
 <li>Player has several buttons on the bottom of the game screen that will call various functions on that affect metrics </li>
-<li>Some buttons will have both positive and negative effects, hovering over each button will give a tooltip that says what it will affect </li>
+<li>As time progresses, Health will decrease and Thirst/Hunger will increase at a set interval</li> 
+<li>Some buttons will have both positive and negative effects </li>
 <li>Trying to escape before reaching the minimum years will punish the player. </li>
 <li>Successful escape will generate a win screen while failing a metric check (exceeding metric limit) will be a game over. </li>
 
@@ -32,3 +33,4 @@ HTML, CSS, Javascript, jQuery
         <li>Colorize positive/negative events</li>
 <li>Add loading bar after an action button is pressed</li>
 <li>Change javascript from using an object for the game to using classes</li>
+<li>Hovering over each button will give a tooltip that says what it will affect</li>
