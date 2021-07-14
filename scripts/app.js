@@ -55,7 +55,6 @@ Animate your pet across the screen while it's alive.
     -Medicinal herbs increases health by 25 and lowers hunger by 1, increase thirst by 3
     -Drink decreases thirst by 3 
     -Escape only appears after 30 years and will end the game, player wins.
-    
 */
 
 /* TODO TODAY
@@ -73,14 +72,18 @@ const player = {
     years: 1,
     monthNum: 0,
     monthArr: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    isTeen: false,
+    isAdult: false,
     //Methods
     startGame() {
         player.startTimer();
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
+        //Setting Player name and welcoming them
         player.name = $("#name").val();
         $("#name_display").text(`Good luck ${player.name}!`);
+        $("#event_log").prepend($(`<br> Welcome ${player.name}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
     },
     sleep() {
         player.health += 25;
@@ -182,10 +185,15 @@ const player = {
             player.monthNum = 0;
         }
         player.updateMetricsDOM();
-        if (player.years >= 5 && player.years < 10) {
+        if (player.years >= 5 && player.years < 10 && player.isTeen == false) {
             $("#avatar_bart").attr("src", "imgs/teenBart.png")
-        } else if (player.years > 10) {
+            $("#event_log").prepend(`<br> ${player.name} has grown up into a teenager!</br>`);
+            //Need the following to so it doesn't keep repeating in the event log
+            player.isTeen = true;
+        } else if (player.years >= 10 && player.isAdult == false) {
             $("#avatar_bart").attr("src", "imgs/oldBart.png");
+            $("#event_log").prepend(`<br> ${player.name} has grown up into a full-fledged adult!</br>`);
+            player.isAdult = true;
         }
     }
 };
@@ -202,3 +210,7 @@ $("#start_game_button").on("click", player.startGame);
 //On loss
 //("button").text("RIP");
 //$("button").off();
+
+//On victory
+//("button").text("Trip to Hawaii!");
+//("button").on("click",player.startGame); Probably startNewGame where it resets everything first then calls startGame

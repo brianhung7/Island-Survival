@@ -33,6 +33,7 @@ body{
     line-height: 1.5em;
     font-size: 20px;
     margin: 0px 15px;
+
     
 }
 
@@ -101,6 +102,7 @@ button:hover {
 
 #avatar_bart{
     height: 100%;
+    transition:1000ms ease-in-out;
 }
 
 #current_event{
