@@ -56,7 +56,7 @@ Animate your pet across the screen while it's alive.
     -Escape only appears after 30 years and will end the game, player wins.
 */
 
-/* TODO TODAY
+/* TODO Tuesday
     Add timer that increments age by 1 every 5 seconds --
     Add metric check in case metric surpasses boundary, game over --
     Add welcome screen for name entry, put name on left side next to bart. --
@@ -74,8 +74,8 @@ Animate your pet across the screen while it's alive.
 /* TODO THursday
     Start live website
     Check for bugs, test everything
-    Add in image selector for bart or lisa avatars on welcome screen
-    Add JS to take in this selector and change class property
+    Add in image selector for bart or lisa avatars on welcome screen-
+    Add JS to take in this selector and change class property-
 */
 
 imgs = {
@@ -170,19 +170,6 @@ class Wilson {
             this.years++;
             this.monthNum = 0;
         }
-        /*
-        if (this.years >= 5 && this.years < 10 && this.monthNum == 0) {
-            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
-            this.monthLengthSeconds = 800;
-            clearInterval(this.timer);
-            this.startTimer();
-        } else if (this.years >= 10 && this.monthNum == 0) {
-            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster</br>`);
-            this.monthLengthSeconds = 500;
-            clearInterval(this.timer);
-            this.startTimer();
-        };
-        */
         this.updateMetricsDOM();
     };
     escape = () => {
@@ -193,7 +180,6 @@ class Wilson {
         } else {
             $("#event_log").prepend($(`<br> Failed escape, try again later! <b class='red_text'>That will cost you  ${Math.floor(Math.random() * 50)} miles.</br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
-            //$(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
     };
     roll = () => {
@@ -440,7 +426,7 @@ class Player extends Wilson {
 
 };
 
-
+//For selecting avatar
 $('.input_img').on("click",function(){
     $('.selected').removeClass('selected'); // removes the previous selected class
     $(this).addClass('selected'); // adds the class to the clicked image
