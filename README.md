@@ -11,7 +11,7 @@ Create a game where you crashed on an island and have to survive by managing hea
 HTML, CSS, Javascript, jQuery, DOM Manipulation
 
 <h2>==Approach Taken==</h2>
-<li>Javascript code was initially written using a player object with many methods to interact with DOM, later changed to using classes  </li>
+<li>Javascript code was initially written using a player object with many methods to interact with DOM for MVP, later changed to using classes for a bonus feature </li>
 
 <h2>==User Stories==</h2>
 <li>Player/user is presented with a welcome screen with basic instructions and name entry before Play </li>
@@ -19,8 +19,9 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>Player has several buttons on the bottom of the game screen that will call various functions that affect metrics </li>
 <li>As time progresses, Health will decrease and Thirst/Hunger will increase at a set interval</li> 
 <li>Some buttons will have both positive and negative effects </li>
-<li>Trying to escape before reaching the minimum years will punish the player. </li>
-<li>Successful escape will generate a win screen while failing a metric check (exceeding metric limit) will be a game over. </li>
+<li>Trying to escape before reaching the minimum  10 years will punish the player. </li>
+<li>Failing a metric check (exceeding metric limit) will be a game over. </li>
+<li>Successful escape will generate a win screen</li>
 
 <h2>==IceBox==</h2>
 <li>Update avatar at certain milestones -</li>
