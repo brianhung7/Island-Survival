@@ -111,8 +111,8 @@ imgs = {
     }
 }
 class Wilson {
-    constructor(name) {
-        this.playerName = name;
+    constructor() {
+        this.playerName = "Brian";
         this.health = 100;
         this.hungerLevel = 1;
         this.thirstLevel = 1;
@@ -130,7 +130,7 @@ class Wilson {
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
         //Setting Player name and welcoming them
-        //this.playerName = $("#name").val();
+        this.playerName = $("#name").val();
         $("#name_display").text(`Good luck ${this.playerName}!`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Tokyo Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
         $("#avatar_bart").attr("src", "imgs/wilsonBall.png");
@@ -191,7 +191,7 @@ class Wilson {
             $("#current_event").css("background-image", "url('imgs/escapeSuccess.gif')");
             this.gameOverWin();
         } else {
-            $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you.</br>`));
+            $("#event_log").prepend($(`<br> Failed escape, try again later! <b class='red_text'>That will cost you  ${Math.floor(Math.random() * 50)} miles.</br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
             //$(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
@@ -229,7 +229,7 @@ class Player extends Wilson {
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
         //Setting Player name and welcoming them
-        this.playerName = $("#name").val();
+        if($("#name").val()){this.playerName = $("#name").val()};
         $("#name_display").text(`${this.playerName}`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
         $("#avatar_bart").attr("src", imgs[this.char].avatar);
