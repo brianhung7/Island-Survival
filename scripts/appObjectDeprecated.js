@@ -73,6 +73,7 @@ Animate your pet across the screen while it's alive.
 */
 
 
+
 const player = {
     name: "Brian",
     health: 100,

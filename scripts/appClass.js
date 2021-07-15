@@ -71,6 +71,28 @@ Animate your pet across the screen while it's alive.
     Add  metric progress bars--
 */
 
+imgs = {
+    bart: {
+        avatar: "imgs/bart.png",
+        sleep: "imgs/bartSleep.png",
+        forage: "imgs/bartForage.gif",
+        hunt: "imgs/bartHunt.gif",
+        drink: "imgs/bartDrink2.png",
+        teen: "imgs/teenBart.png",
+        old: "imgs/oldBart.png",
+        medicine: "imgs/medicine2.png",
+    },
+    lisa: {
+        avatar: "imgs/lisaAvatar.png",
+        sleep: "imgs/lisaSleep.gif",
+        forage: "imgs/lisaForage.gif",
+        hunt: "imgs/lisaHunt.png",
+        drink: "imgs/lisaDrink.png",
+        teen: "imgs/teenLisa.png",
+        old: "imgs/adultLisa.png",
+        medicine: "imgs/medicine2.png",
+    },
+}
 class Wilson {
     constructor(name) {
         this.playerName = name;
@@ -174,19 +196,11 @@ class Wilson {
 
 class Player extends Wilson {
     constructor() {
-        /*this.playerName = "";
-        this.health = 100;
-        this.hungerLevel = 1;
-        this.thirstLevel = 1;
-        this.years = 1;
-        this.monthNum = 0;
-        this.monthArr = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        this.monthLengthSeconds = 1000;
-        this.timer = null;*/
         super();
         this.monthLengthSeconds = 5000;
         this.isTeen = false;
-        this.isAdult = false
+        this.isAdult = false;
+        this.char = 'lisa';
     }
     //Methods
     startGame() {
@@ -200,6 +214,7 @@ class Player extends Wilson {
         this.playerName = $("#name").val();
         $("#name_display").text(`${this.playerName}`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
+        $("#avatar_bart").attr("src", imgs[this.char].avatar);
         this.updateMetricsDOM();
     };
     //Needed to reset game board to clean state
@@ -214,7 +229,7 @@ class Player extends Wilson {
         this.monthLengthSeconds = 5000;
         this.isAdult = false;
         this.isTeen = false;
-        $("#avatar_bart").attr("src", "imgs/bart.png");
+        $("#avatar_bart").attr("src", imgs[this.char].avatar);
         $("#avatar_bart").css("animation-iteration-count", "infinite");
         $("#current_event").css("background-image", "url('imgs/welcomeIsland.gif')");
         this.startGame();
@@ -243,7 +258,7 @@ class Player extends Wilson {
         if (this.thirstLevel > 10) {
             this.thirstLevel = 10;
         }
-        $("#current_event").css("background-image", "url('imgs/bartSleep.png')");
+        $("#current_event").css("background-image", `url(${imgs[this.char].sleep})`);
         //Call function to update DOM
         $("#event_log").prepend($(`<br> Slept. <br> <b class='good_text'>Gained 25 health</b>, <b class='red_text'> hunger and thirst increased by 2.</b></br> </br>`));
         this.updateMetricsDOM();
@@ -254,7 +269,7 @@ class Player extends Wilson {
         if (this.hungerLevel < 1) {
             this.hungerLevel = 1;
         }
-        $("#current_event").css("background-image", "url('imgs/bartForage.gif')");
+        $("#current_event").css("background-image", `url(${imgs[this.char].forage})`);
         //Call function to update DOM
         $("#event_log").prepend($("<br> Foraged.  <br><b class='good_text'> Hunger decreased by 2.</b></br> </br>"));
         this.updateMetricsDOM();
@@ -264,7 +279,7 @@ class Player extends Wilson {
         this.hungerLevel = 1
         let damage = Math.floor(Math.random() * 15);
         this.health -= damage;
-        $("#current_event").css("background-image", "url('imgs/bartHunt.gif')");
+        $("#current_event").css("background-image", `url(${imgs[this.char].hunt})`);
 
         //Call function to update DOM
         $("#event_log").prepend($(`<br> Hunted. <b class='good_text'>Hunger level set to 1.</b> <br>Took <b class = 'red_text'>${damage} damage </b>  from fighting an island boar.</br> </br>`));
@@ -284,7 +299,7 @@ class Player extends Wilson {
         if (this.thirstLevel > 10) {
             this.thirstLevel = 10;
         }
-        $("#current_event").css("background-image", "url('imgs/medicine2.png')");
+        $("#current_event").css("background-image", `url(${imgs[this.char].medicine})`);
 
         //Call function to update DOM
         $("#event_log").prepend($(`<br> Took Medicine. <br><b class='good_text'>Gained 25 health. Hunger Level decreased by 1.</b>. <b class='red_text'> Thirst level increased by 3</b>. </br> </br>`));
@@ -296,7 +311,7 @@ class Player extends Wilson {
         if (this.thirstLevel < 1) {
             this.thirstLevel = 1;
         }
-        $("#current_event").css("background-image", "url('imgs/bartDrink2.png')");
+        $("#current_event").css("background-image", `url(${imgs[this.char].drink})`);
         //Call function to update DOM
         $("#event_log").prepend($("<br> Drank water. <br> <b class='good_text'>Thirst level decreased by 3</b>.</br> </br>"));
         this.updateMetricsDOM();
@@ -346,7 +361,7 @@ class Player extends Wilson {
         }
         this.updateMetricsDOM();
         if (this.years >= 5 && this.years < 10 && this.isTeen == false) {
-            $("#avatar_bart").attr("src", "imgs/teenBart.png")
+            $("#avatar_bart").attr("src", imgs[this.char].teen);
             $("#event_log").prepend(`<br> ${this.playerName} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
             this.monthLengthSeconds -= 1000;
             clearInterval(this.timer);
@@ -354,7 +369,7 @@ class Player extends Wilson {
             //Need the following so it doesn't keep repeating in the event log
             this.isTeen = true;
         } else if (this.years >= 10 && this.isAdult == false) {
-            $("#avatar_bart").attr("src", "imgs/oldBart.png");
+            $("#avatar_bart").attr("src", imgs[this.char].old);
             $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months are shorter so keep an eye on your metrics!</br>`);
             this.monthLengthSeconds -= 1000;
             clearInterval(this.timer);
