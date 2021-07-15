@@ -71,6 +71,13 @@ Animate your pet across the screen while it's alive.
     Add  metric progress bars--
 */
 
+/* TODO THursday
+    Start live website
+    Check for bugs, test everything
+    Add in image selector for bart or lisa avatars on welcome screen
+    Add JS to take in this selector and change class property
+*/
+
 imgs = {
     bart: {
         avatar: "imgs/bart.png",
@@ -200,13 +207,14 @@ class Player extends Wilson {
         this.monthLengthSeconds = 5000;
         this.isTeen = false;
         this.isAdult = false;
-        this.char = 'lisa';
+        this.char = 'bart';
     }
     //Methods
     startGame() {
         clearInterval(this.timer);
         this.startTimer();
         this.initButtons();
+        this.char = $('.input_img.selected').val();
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
@@ -215,6 +223,7 @@ class Player extends Wilson {
         $("#name_display").text(`${this.playerName}`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
         $("#avatar_bart").attr("src", imgs[this.char].avatar);
+        $("#current_event").css("background-image", "url('imgs/welcomeIsland.gif')");
         this.updateMetricsDOM();
     };
     //Needed to reset game board to clean state
@@ -421,6 +430,11 @@ class Player extends Wilson {
 
 };
 
+
+$('.input_img').on("click",function(){
+    $('.selected').removeClass('selected'); // removes the previous selected class
+    $(this).addClass('selected'); // adds the class to the clicked image
+ });
 
 let player = null;
 document.querySelector("#start_game_button").onclick = function () {

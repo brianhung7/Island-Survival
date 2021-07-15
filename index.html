@@ -15,7 +15,7 @@
 <body>
     <div class="container_welcome">
         <div id="welcome_message"><b>Welcome to Island Survival Your plane crash landed on an island and your goal now
-                is to wait it out for 10 years before making an attempt to escape! Keep your Health above 0, and Thirst and Hunger levels below 10!</b>
+                is to survive for 10 years before making an attempt to escape!</b>
         </div>
         <div>
             <img src='imgs/welcomeIsland.gif' alt='island crash landing'>
@@ -23,6 +23,11 @@
         <div>
             <p> Enter your name below and press Play! </p>
             <input type="text" id="name">
+        </div>
+        <div>
+            <input class="input_img bart" type="image" src="imgs/bart.png" value="bart" width=100px height=150px>
+
+            <input class="input_img lisa" type="image" src="imgs/lisaAvatar.png" value="lisa" width=100px height=150px>
         </div>
         <div>
             <button id="start_game_button" title="Let's get started!">
@@ -49,7 +54,7 @@
             <span class="metric thirst">
                 Thirst Level
                 <div class="meter red_bar">
-                    <span id="thirst_meter"style="width: 45%"></span>
+                    <span id="thirst_meter" style="width: 45%"></span>
                 </div>
             </span>
             <span class="metric month">
