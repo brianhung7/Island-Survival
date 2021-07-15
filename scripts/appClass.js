@@ -96,6 +96,7 @@ class Wilson {
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Tokyo Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
         $("#avatar_bart").attr("src", "imgs/wilsonBall.png");
         $("#current_event").css("background-image", "url('imgs/ballWelcome.gif')");
+        this.updateMetricsDOM();
     };
     initButtons() {
         $("#sleep_button").text("Sleep");
@@ -130,21 +131,19 @@ class Wilson {
             this.years++;
             this.monthNum = 0;
         }
-        if (this.years >= 5 && this.years < 10 && this.isTeen == false) {
+        /*
+        if (this.years >= 5 && this.years < 10 && this.monthNum == 0) {
             $("#event_log").prepend(`<br> ${this.playerName} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
             this.monthLengthSeconds = 800;
             clearInterval(this.timer);
             this.startTimer();
-            //Need the following so it doesn't keep repeating in the event log
-            this.isTeen = true;
-        } else if (this.years >= 10 && this.isAdult == false) {
-            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months feel shorter so keep an eye on your metrics!</br>`);
+        } else if (this.years >= 10 && this.monthNum == 0) {
+            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster</br>`);
             this.monthLengthSeconds = 500;
             clearInterval(this.timer);
             this.startTimer();
-            //Need the following so it doesn't keep repeating in the event log
-            this.isAdult = true;
         };
+        */
         this.updateMetricsDOM();
     };
     escape = () => {
@@ -199,7 +198,7 @@ class Player extends Wilson {
         $(".container").removeClass("hidden");
         //Setting Player name and welcoming them
         this.playerName = $("#name").val();
-        $("#name_display").text(`Good luck ${this.playerName}!`);
+        $("#name_display").text(`${this.playerName}`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
         this.updateMetricsDOM();
     };
@@ -290,7 +289,7 @@ class Player extends Wilson {
         //Call function to update DOM
         $("#event_log").prepend($(`<br> Took Medicine. <br><b class='good_text'>Gained 25 health. Hunger Level decreased by 1.</b>. <b class='red_text'> Thirst level increased by 3</b>. </br> </br>`));
         this.updateMetricsDOM();
-        $(".metric.hunger,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
+        $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
     };
     drink = () => {
         this.thirstLevel -= 3;

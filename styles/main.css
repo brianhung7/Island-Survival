@@ -55,7 +55,7 @@ body{
 }
 
 .metric{
-    border: 5px purple solid;
+    border: 5px #F9C74F solid;
     padding: 20px;
     width: 100%;
     border-radius: 3px;
