@@ -155,11 +155,11 @@ class Wilson {
         } else {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you.</br>`));
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
-            $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
+            //$(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
     };
     roll = () => {
-        $("#event_log").prepend($(`<br>Try as you might but you can't do anything but roll! You rolled for ${Math.floor(Math.random() * 50)} miles</br>`));
+        $("#event_log").prepend($(`<br>Try as you might but you can't do anything but roll! <b class='good_text'>You rolled for ${Math.floor(Math.random() * 50)} miles</b></br>`));
         $("#current_event").css("background-image", "url('imgs/ballGif.gif')");
     };
     gameOverWin = () => {
@@ -168,7 +168,7 @@ class Wilson {
         $("button").on("click", function(){
             $("#current_event").css("background-image","url('imgs/ballWin.gif')");
         });
-        $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!`);
+        $("#event_log").prepend(`<b class='good_text'>You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!</b>`);
         clearInterval(this.timer);
     };
 }
@@ -312,20 +312,27 @@ class Player extends Wilson {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took 25 damage, Hunger Level increased by 3, Thirst Level increased by 3 </b></br>`));
             this.health -= 25;
             this.hungerLevel += 3;
+            if(this.hungerLevel > 10){
+                this.hungerLevel = 10;
+            };
             this.thirstLevel += 3;
+            if(this.thirstLevel > 10){
+                this.thirstLevel = 10;
+            };
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
             $(".metric.health,.metric.thirst,.metric.hunger").fadeTo('slow', 0.2).fadeTo('slow', 1.0);;
         }
+        this.updateMetricsDOM();
     };
     checkMetrics = () => {
         if (this.health <= 0) {
-            $("#event_log").prepend(`<br> ${this.playerName}'s Health reached 0, you lose!</br>`);
+            $("#event_log").prepend(`<br> ${this.playerName}'s <b class = 'red_text'>Health reached 0, you lose!</b></br>`);
             this.gameOverLose();
         } else if (this.hungerLevel >= 10) {
-            $("#event_log").prepend(`<br> ${this.playerName}'s Hunger Level reached 10, you lose!</br>`);
+            $("#event_log").prepend(`<br> ${this.playerName}'s <b class = 'red_text'>Hunger Level reached 10, you lose!</b></br>`);
             this.gameOverLose();
         } else if (this.thirstLevel >= 10) {
-            $("#event_log").prepend(`<br> ${this.playerName}'s Thirst Level reached 10, you lose!</br>`);
+            $("#event_log").prepend(`<br> ${this.playerName}'s <b class = 'red_text'>Thirst Level reached 10, you lose!</b></br>`);
             this.gameOverLose();
         }
     };
@@ -349,7 +356,7 @@ class Player extends Wilson {
             this.isTeen = true;
         } else if (this.years >= 10 && this.isAdult == false) {
             $("#avatar_bart").attr("src", "imgs/oldBart.png");
-            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months feel shorter so keep an eye on your metrics!</br>`);
+            $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months are shorter so keep an eye on your metrics!</br>`);
             this.monthLengthSeconds -= 1000;
             clearInterval(this.timer);
             this.startTimer();
@@ -380,7 +387,7 @@ class Player extends Wilson {
     gameOverWin = () => {
         $("button").text("Trip to Hawaii!");
         $("button").on("click", this.startNewGame);
-        $("#event_log").prepend(`You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii! `);
+        $("#event_log").prepend(`<b class = 'good_text'> You won the game! Now go ahead and enjoy your new prize of a trip to Hawaii!</b> `);
         clearInterval(this.timer);
     };
     initButtons() {

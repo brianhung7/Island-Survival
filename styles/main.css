@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body{
     height: 100vh;
@@ -6,6 +7,7 @@ body{
     align-items: center;
     background-image: url('https://i.imgur.com/i7siiF4.png');
     background-size: cover;
+    font-family: 'Poppins', sans-serif;
 }
 
 .container_welcome{
@@ -26,7 +28,7 @@ body{
 
 #welcome_message{
     line-height: 1.5em;
-    font-size: 20px;
+    font-size: 16px;
     margin: 0px 15px;
 }
 
@@ -120,14 +122,17 @@ button:hover {
     text-align: center;
     flex: 1.5;
     overflow-x: hidden;
+    padding: 0 15px;
 }
 
 .red_text{
-    color:red;
+    color:#F94144;
+    text-shadow: 1px 1px black;
 }
 
 .good_text{
     color:green;
+    text-shadow: 1px 1px black;
 }
 
 .alert{
