@@ -11,13 +11,12 @@ Create a game where you crashed on an island and have to survive by managing hea
 HTML, CSS, Javascript, jQuery, DOM Manipulation
 
 <h2>==Approach Taken==</h2>
-<li>Javascript code is written using a player object with several methods that will interact with the DOM</li>
-<li>ICEBOX, convert javascript code to using classes-</li>
+<li>Javascript code was initially written using a player object with many methods to interact with DOM, later changed to using classes  </li>
 
 <h2>==User Stories==</h2>
 <li>Player/user is presented with a welcome screen with basic instructions and name entry before Play </li>
 <li>After beginning the game, player sees several metrics on the top bar that they have to manage, keeping Health above 0 and Thirst/Hunger Levels lower than 10. </li>
-<li>Player has several buttons on the bottom of the game screen that will call various functions on that affect metrics </li>
+<li>Player has several buttons on the bottom of the game screen that will call various functions that affect metrics </li>
 <li>As time progresses, Health will decrease and Thirst/Hunger will increase at a set interval</li> 
 <li>Some buttons will have both positive and negative effects </li>
 <li>Trying to escape before reaching the minimum years will punish the player. </li>
@@ -32,11 +31,12 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>Add game over screen/avatar -</li>
 <li>On game over, disable button functions so that they do nothing when game ends -</li>
 <li>Add event log to keep track of events/actions -</li>
-        <li>Colorize positive/negative events</li>
+        <li>Colorize positive/negative events-</li>
 <li>Add loading bar after an action button is pressed</li>
-<li>Change javascript from using an object for the game to using classes</li>
+<li>Change javascript from using an object for the game to using classes-</li>
 <li>Hovering over each button will give a tooltip that says what it will affect -</li>
 <li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
 <li>Add "bars" to metrics in addition to the textual metrics -</li>
 <li>Add nicer looking font</li>
 <li>Wilson volleyball easter egg-</li>
+<li>Unique volleyball ending-</li>
