@@ -28,8 +28,6 @@ body{
     line-height: 1.5em;
     font-size: 20px;
     margin: 0px 15px;
-
-    
 }
 
 .container{
@@ -108,7 +106,7 @@ button:hover {
 
 #current_event{
     flex: 1;
-    background-size:contain;
+    background-size:cover;
     background-repeat: no-repeat;
     transition: .5s ease-in-out;
     border-radius: 10px;

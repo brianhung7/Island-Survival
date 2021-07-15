@@ -72,8 +72,8 @@ Animate your pet across the screen while it's alive.
 */
 
 class Wilson {
-    constructor() {
-        this.playerName = "";
+    constructor(name) {
+        this.playerName = name;
         this.health = 100;
         this.hungerLevel = 1;
         this.thirstLevel = 1;
@@ -91,7 +91,7 @@ class Wilson {
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
         //Setting Player name and welcoming them
-        this.playerName = $("#name").val();
+        //this.playerName = $("#name").val();
         $("#name_display").text(`Good luck ${this.playerName}!`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately some Tokyo Olympic Volleyball players spiked you to a deserted island. Try to stay alive for 10 years before escaping!</br><br />`));
         $("#avatar_bart").attr("src", "imgs/wilsonBall.png");
@@ -185,11 +185,11 @@ class Player extends Wilson {
         this.monthLengthSeconds = 1000;
         this.timer = null;*/
         super();
+        this.monthLengthSeconds = 5000;
         this.isTeen = false;
         this.isAdult = false
     }
     //Methods
-
     startGame() {
         clearInterval(this.timer);
         this.startTimer();
@@ -200,10 +200,10 @@ class Player extends Wilson {
         //Setting Player name and welcoming them
         this.playerName = $("#name").val();
         $("#name_display").text(`Good luck ${this.playerName}!`);
-        $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years!</br><br />`));
+        $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
         this.updateMetricsDOM();
     };
-
+    //Needed to reset game board to clean state
     startNewGame = () => {
         $("button").off();
         this.health = 100;
@@ -215,10 +215,10 @@ class Player extends Wilson {
         this.monthLengthSeconds = 5000;
         this.isAdult = false;
         this.isTeen = false;
-        this.startGame();
         $("#avatar_bart").attr("src", "imgs/bart.png");
         $("#avatar_bart").css("animation-iteration-count", "infinite");
         $("#current_event").css("background-image", "url('imgs/welcomeIsland.gif')");
+        this.startGame();
     };
     updateMetricsDOM() {
         $(".metric.years").text(`Years On Island= ${this.years}`);
@@ -342,7 +342,7 @@ class Player extends Wilson {
         if (this.years >= 5 && this.years < 10 && this.isTeen == false) {
             $("#avatar_bart").attr("src", "imgs/teenBart.png")
             $("#event_log").prepend(`<br> ${this.playerName} has grown up into a teenager! Now that you are older, time will pass by faster!</br>`);
-            this.monthLengthSeconds = 4000;
+            this.monthLengthSeconds -= 1000;
             clearInterval(this.timer);
             this.startTimer();
             //Need the following so it doesn't keep repeating in the event log
@@ -350,13 +350,13 @@ class Player extends Wilson {
         } else if (this.years >= 10 && this.isAdult == false) {
             $("#avatar_bart").attr("src", "imgs/oldBart.png");
             $("#event_log").prepend(`<br> ${this.playerName} has grown up into a full-fledged adult! As an adult, time flies by even faster, months feel shorter so keep an eye on your metrics!</br>`);
-            this.monthLengthSeconds = 3000;
+            this.monthLengthSeconds -= 1000;
             clearInterval(this.timer);
             this.startTimer();
             //Need the following so it doesn't keep repeating in the event log
             this.isAdult = true;
         };
-        if (this.monthNum % 2 === 0) {
+        if (this.monthNum % 3 === 0) { //For purposes of having enough time to talk about project, change divide by 2 to something else
             this.timedMetricDecrease();
         }
     };
@@ -374,6 +374,7 @@ class Player extends Wilson {
         $("#event_log").prepend(`Game over!`);
         $("#avatar_bart").attr("src", "imgs/RIP.png");
         $("#avatar_bart").css("animation-iteration-count", "0");
+        $("#current_event").css("background-image","url('imgs/reaper.png')");
         clearInterval(this.timer);
     };
     gameOverWin = () => {
@@ -403,10 +404,10 @@ class Player extends Wilson {
 let player = null;
 document.querySelector("#start_game_button").onclick = function () {
     if ($("#name").val() == "Wilson") {
-        player = new Wilson();
+        player = new Wilson($("#name").val());
         player.startGame();
     } else {
-        player = new Player();
+        player = new Player($("#name").val());
         player.startGame();
     }
 }
