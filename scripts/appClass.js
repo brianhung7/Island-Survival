@@ -99,6 +99,16 @@ imgs = {
         old: "imgs/adultLisa.png",
         medicine: "imgs/medicine2.png",
     },
+    maggie: {
+        avatar: "imgs/maggieAvatar.png",
+        sleep: "imgs/maggieSleep.png",
+        forage: "imgs/maggieForage.png",
+        hunt: "imgs/maggieHunt.png",
+        drink: "imgs/maggieDrink.png",
+        teen: "imgs/maggieTeen.png",
+        old: "imgs/maggieOld.png",
+        medicine: "imgs/medicine2.png",
+    }
 }
 class Wilson {
     constructor(name) {
@@ -214,7 +224,7 @@ class Player extends Wilson {
         clearInterval(this.timer);
         this.startTimer();
         this.initButtons();
-        this.char = $('.input_img.selected').val();
+        if($('.input_img.selected').val()) {this.char = $('.input_img.selected').val()};
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
