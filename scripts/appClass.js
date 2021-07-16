@@ -191,8 +191,9 @@ class Wilson {
         $("button").off();
         $("button").on("click", function () {
             $("#current_event").css("background-image", "url('imgs/ballWin.gif')");
+            $("#event_log").prepend(`<b class='good_text'><br>You found the true ending!</br></b>`);
         });
-        $("#event_log").prepend(`<b class='good_text'>You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!</b>`);
+        $("#event_log").prepend(`<b class='good_text'><br>You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!</br></b>`);
         clearInterval(this.timer);
     };
 }
