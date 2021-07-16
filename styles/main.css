@@ -18,7 +18,7 @@ body{
     text-align: center;
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     overflow:auto;
     background-color: #43AA8B;
     
@@ -29,7 +29,7 @@ body{
 
 #welcome_message{
     line-height: 1.5em;
-    font-size: 16px;
+    font-size: 20px;
     margin: 0px 15px;
 }
 
@@ -37,6 +37,7 @@ body{
     width: 70vw;
     border: 10px solid #277DA1;
     border-radius: 10px;
+    height: 60vh;
 }
 
 .container.hidden{
@@ -61,19 +62,22 @@ body{
     width: 100%;
     border-radius: 3px;
     text-align: center;
-    height:30px;
+    height: 30px;
 }
 .buttons_container{
     background-color: #90BE6D;
+    overflow: auto;
+    height: 125px;
+
 }
 
 .center_area{
     display: flex;
     border-bottom: 5px solid grey;
     background-color: #43AA8B;
-    height: 300px;
     flex-flow: row;
     text-align: center;
+    height: 350px;
 }
 
 .buttons_top, .buttons_bottom {
@@ -199,7 +203,7 @@ button:hover {
         overflow: hidden;
       }
 
-      .meter.red_bar > span{
+.meter.red_bar > span{
         display: block;
         height: 100%;
         border-top-right-radius: 8px;
@@ -217,14 +221,17 @@ button:hover {
           inset 0 -2px 6px rgba(0,0,0,0.4);
         position: relative;
         overflow: hidden;
-      }
+}
 
 
-      #start_game_button{
-          padding: 5px 20px;
-      }
+#start_game_button{
+    padding: 15px 20px;
+}
 
-      .input_img {border:solid 1px red; margin:10px;}
+.input_img {
+    border:solid 1px red; 
+    margin:10px;
+}
 
 .selected{
    box-shadow:0px 22px 22px 5px #333;
