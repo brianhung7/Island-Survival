@@ -38,7 +38,7 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>Hovering over each button will give a tooltip that says what it will affect -</li>
 <li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
 <li>Add "bars" to metrics in addition to the textual metrics -</li>
-<li>Add nicer looking font</li>
+<li>Add nicer looking font-</li>
 <li>Wilson volleyball easter egg game leveraging classes-</li>
 <li>Unique volleyball ending-</li>
 <li>Avatar selection option, as Bart or Lisa, with unique animations -</li>
@@ -46,4 +46,4 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>Add selection animation for avatars -</li>
 
 <h2>==Other Notes/Spoilers==</h2>
-<li>In trying to "give birth to a baby" or "add another survivor to the island" I couldn't figure/plan out how to setup the game board for two characters at the same time. So the conversion of the Javascript file from using an object to classes seemed wasted. Instead I implemented another idea where you play stripped down version as a volleyball if your name is "Wilson". So the "full game" is actually extended(a child) from the volleyball class while the stripped version is the parent class with minimal functionality. Which I think is a bad idea because now the  "Player" class is a child of a "Volleyball". Player child class has many more functions and abilities as well as overwrites some parent class functions</li>
+<li>In trying to "give birth to a baby" or "add another survivor to the island" I couldn't figure/plan out how to setup the game board for two characters at the same time. So the conversion of the Javascript file from using an object to classes seemed wasted. Instead I implemented another idea where you play a stripped down version as a volleyball if your name is "Wilson". So the "full game" is actually extended(a child) from the Wilson parent class while the stripped version is the parent class with minimal functionality. Which I think is a bad idea because now the  "Player" class is a child of a "Wilson". Player child class has many more functions and abilities as well as overwrites some parent class functions</li>
