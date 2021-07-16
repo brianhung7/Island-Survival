@@ -189,8 +189,8 @@ class Wilson {
     gameOverWin = () => {
         $("button").text("Trip to Olympics!");
         $("button").off();
-        $("button").on("click", function(){
-            $("#current_event").css("background-image","url('imgs/ballWin.gif')");
+        $("button").on("click", function () {
+            $("#current_event").css("background-image", "url('imgs/ballWin.gif')");
         });
         $("#event_log").prepend(`<b class='good_text'>You won the game! Now go ahead and enjoy your new prize of a trip to the Tokyo Olympics!</b>`);
         clearInterval(this.timer);
@@ -210,12 +210,12 @@ class Player extends Wilson {
         clearInterval(this.timer);
         this.startTimer();
         this.initButtons();
-        if($('.input_img.selected').val()) {this.char = $('.input_img.selected').val()};
+        if ($('.input_img.selected').val()) { this.char = $('.input_img.selected').val() };
         //Hide welcome screen, show main gameplay 
         $(".container_welcome").addClass("hidden");
         $(".container").removeClass("hidden");
         //Setting Player name and welcoming them
-        if($("#name").val()){this.playerName = $("#name").val()};
+        if ($("#name").val()) { this.playerName = $("#name").val() };
         $("#name_display").text(`${this.playerName}`);
         $("#event_log").prepend($(`<br> Welcome ${this.playerName}! Unfortunately your vacation flight to Hawaii has crashed on a remote island, do your best to survive to 10 years! Keep your health above 0, and your Thirst and Hunger levels below 10!</br><br />`));
         $("#avatar_bart").attr("src", imgs[this.char].avatar);
@@ -331,11 +331,11 @@ class Player extends Wilson {
             $("#event_log").prepend($(`<br> Failed escape, try again later! That will cost you. <b class = 'red_text'>Took 25 damage, Hunger Level increased by 3, Thirst Level increased by 3 </b></br>`));
             this.health -= 25;
             this.hungerLevel += 3;
-            if(this.hungerLevel > 10){
+            if (this.hungerLevel > 10) {
                 this.hungerLevel = 10;
             };
             this.thirstLevel += 3;
-            if(this.thirstLevel > 10){
+            if (this.thirstLevel > 10) {
                 this.thirstLevel = 10;
             };
             $("#current_event").css("background-image", "url('imgs/escapeFail.gif')");
@@ -400,7 +400,7 @@ class Player extends Wilson {
         $("#event_log").prepend(`Game over!`);
         $("#avatar_bart").attr("src", "imgs/RIP.png");
         $("#avatar_bart").css("animation-iteration-count", "0");
-        $("#current_event").css("background-image","url('imgs/reaper.png')");
+        $("#current_event").css("background-image", "url('imgs/reaper.png')");
         clearInterval(this.timer);
     };
     gameOverWin = () => {
@@ -427,18 +427,17 @@ class Player extends Wilson {
 };
 
 //For selecting avatar
-$('.input_img').on("click",function(){
-    $('.selected').removeClass('selected'); // removes the previous selected class
-    $(this).addClass('selected'); // adds the class to the clicked image
- });
+$('.input_img').on("click", function () {
+    $('.selected').removeClass('selected'); 
+    $(this).addClass('selected');
+});
 
 let player = null;
 document.querySelector("#start_game_button").onclick = function () {
-    if ($("#name").val() == "Wilson") {
+    if ($("#name").val() === "Wilson") {
         player = new Wilson($("#name").val());
-        player.startGame();
     } else {
         player = new Player($("#name").val());
-        player.startGame();
     }
+    player.startGame();
 }
