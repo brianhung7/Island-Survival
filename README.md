@@ -7,6 +7,8 @@
 <h2>==Goal==</h2>
 Create a game where you crashed on an island and have to survive by managing health, thirst, and hunter to 10 years before escaping to win.
 
+https://brianhung7.github.io/Project-Tomagotchi/
+
 <h2>==Technologies Used==</h2>
 HTML, CSS, Javascript, jQuery, DOM Manipulation
 
