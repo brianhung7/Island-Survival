@@ -1,5 +1,5 @@
 # Island Survival (Tomagotchi)
-==Wireframes==
+<h2>==Wireframes==</h2>
 
 <img src="imgs/wireframeWelcome.png" alt="Welcome Wireframe">
 <img src="imgs/wireframeMain.png" alt="Gameplay Wireframe">
