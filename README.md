@@ -25,27 +25,27 @@ HTML, CSS, Javascript, jQuery, DOM Manipulation
 <li>Failing a metric check (exceeding metric limit) will be a game over. </li>
 <li>Successful escape will generate a win screen</li>
 
-<h2>==IceBox==</h2>
-<li>Update avatar at certain milestones -</li>
-     <li>Add effect to signify aging to new avatar</li>
-<li>Animate various activities -</li>
-<li>When a metric is changed/modified, flash the respective metric to alert player something happened. -</li>
-<li>On Game Over loss or win, add option to restart the game -</li>
-<li>Add game over screen/avatar -</li>
-<li>On game over, disable button functions so that they do nothing when game ends -</li>
-<li>Add event log to keep track of events/actions -</li>
-        <li>Colorize positive/negative events-</li>
+<h2>==IceBox/Stretch Goals==</h2>
+<li>Update avatar at certain milestones :heavy_check_mark:</li>
+     <li>Add effect to signify aging to new avatar :heavy_check_mark:</li>
+<li>Animate various activities :heavy_check_mark:</li>
+<li>When a metric is changed/modified, flash the respective metric to alert player something happened. :heavy_check_mark:</li>
+<li>On Game Over loss or win, add option to restart the game :heavy_check_mark:</li>
+<li>Add game over screen/avatar :heavy_check_mark:</li>
+<li>On game over, disable button functions so that they do nothing when game ends :heavy_check_mark:</li>
+<li>Add event log to keep track of events/actions :heavy_check_mark:</li>
+        <li>Colorize positive/negative events:heavy_check_mark:</li>
 <li>Add loading bar after an action button is pressed</li>
-<li>Change javascript from using an object for the game to using classes-</li>
-<li>Hovering over each button will give a tooltip that says what it will affect -</li>
-<li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster - </li>
-<li>Add "bars" to metrics in addition to the textual metrics -</li>
-<li>Add nicer looking font-</li>
-<li>Wilson volleyball easter egg game leveraging classes-</li>
-<li>Unique volleyball ending-</li>
-<li>Avatar selection option, as Bart or Lisa, with unique animations -</li>
-<li>Add Maggie as a possible avatar with unique animations - </li>
-<li>Add selection animation for avatars -</li>
+<li>Change javascript from using an object for the game to using classes:heavy_check_mark:</li>
+<li>Hovering over each button will give a tooltip that says what it will affect :heavy_check_mark:</li>
+<li>As player reaches certain age milestones, time will pass faster and thus metrics will decrease/increase faster :heavy_check_mark: </li>
+<li>Add "bars" to metrics in addition to the textual metrics :heavy_check_mark:</li>
+<li>Add nicer looking font:heavy_check_mark:</li>
+<li>Wilson volleyball easter egg game leveraging classes:heavy_check_mark:</li>
+<li>Unique volleyball ending:heavy_check_mark:</li>
+<li>Avatar selection option, as Bart or Lisa, with unique animations :heavy_check_mark:</li>
+<li>Add Maggie as a possible avatar with unique animations :heavy_check_mark: </li>
+<li>Add selection animation for avatars :heavy_check_mark:</li>
 
 <h2>==Other Notes/Spoilers==</h2>
 <li>In trying to "give birth to a baby" or "add another survivor to the island" I couldn't figure/plan out how to setup the game board for two characters at the same time. So the conversion of the Javascript file from using an object to classes seemed wasted. Instead I implemented another idea where you play a stripped down version as a volleyball if your name is "Wilson". So the "full game" is actually extended(a child) from the Wilson parent class while the stripped version is the parent class with minimal functionality. Which I think is a bad idea because now the  "Player" class is a child of a "Wilson". Player child class has many more functions and abilities as well as overwrites some parent class functions</li>
